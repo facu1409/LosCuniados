@@ -15,20 +15,15 @@
 
 		<c:if test="${!empty clienteList}">
 			<table border="1" bgcolor="black" width="600px">
-				<tr
-					style="background-color: teal; color: white; text-align: center;"
+				<tr	style="background-color: teal; color: white; text-align: center;"
 					height="40px">
-
-					<td><spring:message code="label.firstname"/></td>
-					<td><spring:message code="label.lastname"/></td>
-					<td><spring:message code="label.telMovil"/></td>
-					<td><spring:message code="label.email"/></td>
-					<td><spring:message code="label.direccionCalle"/></td>
-					<td><spring:message code="label.direccionNro"/></td>
-					<td><spring:message code="label.direccionDpto"/></td>
-					<td><spring:message code="label.direccionPiso"/></td>			
-					<td><spring:message code="label.edit"/></td>
-					<td><spring:message code="label.delete"/></td>
+					<td>Nombre</td>
+					<td>Apellido</td>
+					<td>Celular</td>
+					<td>Email</td>
+					<td>Calle</td>						
+					<td><b>Editar</b></td>
+					<td><b>Eliminar</b></td>
 				</tr>
 				<c:forEach items="${clienteList}" var="user">
 					<tr
@@ -43,24 +38,18 @@
 						</td>
 						<td><c:out value="${user.email}" />
 						</td>
-						<td><c:out value="${user.direccionCalle}" />
-						</td>
-						<td><c:out value="${user.direccionNro}" />
-						</td>
-						<td><c:out value="${user.direccionDpto}" />
-						</td>
-						<td><c:out value="${user.direccionPiso}" />
-						</td>
+						<td><c:out value="${user.direccion}" />
+						</td>						
 
-						<td><a href="clienteEdit?id=${user.clienteID}"><spring:message code="label.edit"/></a></td>
-						<td><a href="clienteDelete?id=${user.clienteID}"><spring:message code="label.delete"/></a></td>
+						<td><a href="clienteEdit?id=${user.clienteID}">Editar</a></td>
+						<td><a href="clienteDelete?id=${user.clienteID}">Eliminar</a></td>
 					</tr>
 				</c:forEach>
 			</table>
 		</c:if>
 
 
-		<a href="clienteForm"><spring:message code="label.nuevocliente"/></a>
+		<a href="clienteForm">Nuevo Cliente</a>
 	</center>
 </body>
 </html>

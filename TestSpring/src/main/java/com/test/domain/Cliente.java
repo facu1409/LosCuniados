@@ -7,13 +7,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cliente")//Este nombre debe ser igual a la base de datos
+@Table(name="Cliente")//Este nombre debe ser igual a la base de datos
 public class Cliente {
 
 	@Id
 	@GeneratedValue
 	@Column(name="ClienteID")
-	private int clienteID;
+	private int id;
 	
 	@Column(name="Nombre")
 	private String nombre;
@@ -24,27 +24,30 @@ public class Cliente {
 	@Column(name="TelMovil")
 	private String telMovil;	
 
-	@Column(name="email")
+	@Column(name="Email")
 	private String email;	
 	
-	@Column(name="DireccionCalle")
-	private String direccionCalle;	
+	@Column(name="Direccion")
+	private String direccion;
 	
-	@Column(name="DireccionNro")
-	private String direccionNro;	
-	
-	@Column(name="DireccionDpto")
-	private String direccionDpto;	
-	
-	@Column(name="DireccionPiso")
-	private String direccionPiso;
+	public int getId() {
+		return id;
+	}
 
-	public int getClienteID() {
-		return clienteID;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
 	public void setClienteID(int clienteID) {
-		this.clienteID = clienteID;
+		this.id = clienteID;
 	}
 
 	public String getNombre() {
@@ -79,36 +82,4 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public String getDireccionCalle() {
-		return direccionCalle;
-	}
-
-	public void setDireccionCalle(String direccionCalle) {
-		this.direccionCalle = direccionCalle;
-	}
-
-	public String getDireccionNro() {
-		return direccionNro;
-	}
-
-	public void setDireccionNro(String direccionNro) {
-		this.direccionNro = direccionNro;
-	}
-
-	public String getDireccionDpto() {
-		return direccionDpto;
-	}
-
-	public void setDireccionDpto(String direccionDpto) {
-		this.direccionDpto = direccionDpto;
-	}
-
-	public String getDireccionPiso() {
-		return direccionPiso;
-	}
-
-	public void setDireccionPiso(String direccionPiso) {
-		this.direccionPiso = direccionPiso;
-	}	
-	
 }

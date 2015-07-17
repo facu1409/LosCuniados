@@ -18,8 +18,8 @@
   	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
   	 
 
-	<context:component-scan base-package="com.proguide.controller" />
-	<context:property-placeholder location="classpath:database.properties" />
+	<context:component-scan base-package="com.test.controller" />
+<!-- 	<context:property-placeholder location="classpath:database.properties" /> -->
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" /> 
 	<mvc:annotation-driven />
@@ -29,12 +29,19 @@
     <tx:annotation-driven transaction-manager="transactionManager" /> 
     
     
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${database.driver}" />
-		<property name="url" value="${database.url}" />
-		<property name="username" value="${database.user}" />
-		<property name="password" value="${database.password}" />
+<!-- 	<bean id="dataSource" -->
+<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 		<property name="driverClassName" value="${database.driver}" /> -->
+<!-- 		<property name="url" value="${database.url}" /> -->
+<!-- 		<property name="username" value="${database.user}" /> -->
+<!-- 		<property name="password" value="${database.password}" /> -->
+<!-- 	</bean> -->
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/LosCunia" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
 	</bean>
 
 	<bean id="sessionFactory"
@@ -47,18 +54,21 @@
         </property> 
 		<property name="hibernateProperties">
 			<props>				
-<!-- 				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop> -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 			</props>
 		</property>
 	</bean>
+    
 	
 	<bean id = "transactionManager" class = "org.springframework.orm.hibernate4.HibernateTransactionManager">
-    <property name = "sessionFactory" ref = "sessionFactory" />    
+    	<property name = "sessionFactory" ref = "sessionFactory" />    
 	</bean>	
 
- 	<bean id="clienteDaoImpl" class="com.test.dao.ClienteDaoImpl" ></bean> 
-	<bean id="clienteServiceImpl" class="com.test.services.ClienteServiceImpl"></bean>
+ 	<bean id="clienteDao" class="com.test.dao.ClienteDaoImpl" > 		
+ 	</bean> 
+	<bean id="clienteService" class="com.test.services.ClienteServiceImpl">
+	</bean>
 
 	<bean id="txManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -76,12 +86,7 @@
 		<property name="suffix">
 			<value>.jsp</value>
 		</property>
-	</bean>
-	
-	<bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="classpath:messages" />
-		<property name="defaultEncoding" value="UTF-8" />
 	</bean>	
+	
 	
 </beans>

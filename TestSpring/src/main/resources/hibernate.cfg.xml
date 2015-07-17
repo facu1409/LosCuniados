@@ -5,9 +5,7 @@
  
 <hibernate-configuration>
     <session-factory>
-         <mapping class="com/test/domain/Perfil" />
-         <mapping class="com/test/domain/Profesional" />
-         <mapping class="com/test/domain/Competencia" />
+         <mapping class="com/test/domain/Cliente" />        
     </session-factory>
          
 </hibernate-configuration>

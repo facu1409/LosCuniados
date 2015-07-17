@@ -29,16 +29,13 @@ public class ClienteDaoImpl implements ClienteDao {
 	}
 
 	public void updateCliente(Cliente Cliente) {
-		Cliente profToUpdate = getClienteById(Cliente.getClienteID());
-		profToUpdate.setNombre(Cliente.getNombre());
-		profToUpdate.setApellido(Cliente.getApellido());
-		profToUpdate.setTelMovil(Cliente.getTelMovil());
-		profToUpdate.setEmail(Cliente.getEmail());
-		profToUpdate.setDireccionCalle(Cliente.getDireccionCalle());
-		profToUpdate.setDireccionDpto(Cliente.getDireccionDpto());
-		profToUpdate.setDireccionNro(Cliente.getDireccionNro());
-		profToUpdate.setDireccionPiso(Cliente.getDireccionPiso());
-		getCurrentSession().update(profToUpdate);		
+		Cliente clienteToUpdate = getClienteById(Cliente.getId());
+		clienteToUpdate.setNombre(Cliente.getNombre());
+		clienteToUpdate.setApellido(Cliente.getApellido());
+		clienteToUpdate.setTelMovil(Cliente.getTelMovil());
+		clienteToUpdate.setEmail(Cliente.getEmail());
+		clienteToUpdate.setDireccion(Cliente.getDireccion());		
+		getCurrentSession().update(clienteToUpdate);		
 	}
 	
 	public void deleteCliente(int id) {
