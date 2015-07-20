@@ -10,6 +10,7 @@
 		<jsp:include page="header.jsp"></jsp:include>
 	</head>
 <body>
+	<jsp:include page="header2.jsp"></jsp:include>
 	<div class="container">
 	<br />
 		<div class="row">
