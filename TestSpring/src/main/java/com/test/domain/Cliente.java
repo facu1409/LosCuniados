@@ -7,29 +7,38 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Cliente")//Este nombre debe ser igual a la base de datos
+@Table(name="cliente")//Este nombre debe ser igual a la base de datos
 public class Cliente {
 
 	@Id
 	@GeneratedValue
-	@Column(name="ClienteID")
-	private int id;
+	@Column(name="id")
+	private int id;	
 	
-	@Column(name="Nombre")
+	@Column(name="dniCuit")
+	private int dniCuit;	
+	
+	@Column(name="nombre")
 	private String nombre;
 	
-	@Column(name="Apellido")
+	@Column(name="apellido")
 	private String apellido;
 	
-	@Column(name="TelMovil")
-	private String telMovil;	
+	@Column(name="fechaNacimiento")
+	private String fechaNacimiento;
+		
+	@Column(name="domicilio")
+	private String domicilio;
+	
+	@Column(name="telefono")
+	private int telMovil;	
 
-	@Column(name="Email")
+	@Column(name="mail")
 	private String email;	
 	
-	@Column(name="Direccion")
-	private String direccion;
-	
+	@Column(name="activo")
+	private Boolean activo;
+
 	public int getId() {
 		return id;
 	}
@@ -38,16 +47,20 @@ public class Cliente {
 		this.id = id;
 	}
 
-	public String getDireccion() {
-		return direccion;
+	public String getDomicilio() {
+		return domicilio;
 	}
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+	public void setDomicilio(String domicilio) {
+		this.domicilio = domicilio;
 	}
 
-	public void setClienteID(int clienteID) {
-		this.id = clienteID;
+	public int getDniCuit() {
+		return dniCuit;
+	}
+
+	public void setDniCuit(int dniCuit) {
+		this.dniCuit = dniCuit;
 	}
 
 	public String getNombre() {
@@ -66,11 +79,11 @@ public class Cliente {
 		this.apellido = apellido;
 	}
 
-	public String getTelMovil() {
+	public int getTelMovil() {
 		return telMovil;
 	}
 
-	public void setTelMovil(String telMovil) {
+	public void setTelMovil(int telMovil) {
 		this.telMovil = telMovil;
 	}
 
@@ -82,4 +95,23 @@ public class Cliente {
 		this.email = email;
 	}
 
+	public String getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(String fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
+	}
+	
+	
+	
+	
 }

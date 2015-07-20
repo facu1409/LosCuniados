@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.test.domain.Cliente;
 import com.test.services.ClienteService;
 
@@ -20,10 +18,10 @@ public class ClienteController {
 	@Autowired
 	ClienteService clienteService;
 
-	@RequestMapping("clienteForm")
-	public ModelAndView getForm(@ModelAttribute Cliente cliente) {
-		return new ModelAndView("clienteForm");
-	}
+//	@RequestMapping("cliente")
+//	public ModelAndView getForm(@ModelAttribute Cliente cliente) {
+//		return new ModelAndView("cliente");
+//	}
 	
 	@RequestMapping(value = "/clientes", method = RequestMethod.GET)
 	public String listClientes(Model model) {
