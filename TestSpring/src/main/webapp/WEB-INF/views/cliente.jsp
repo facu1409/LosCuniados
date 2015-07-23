@@ -129,8 +129,7 @@
 									<th>Domicilio</th>
 									<th>Fecha de Nacimiento</th>
 									<th>Activo</th>		
-									<th>Editar</th>
-									<th>Eliminar</th>
+									<th>Acciones</th>									
 								</tr>				
 							<c:forEach items="${listClientes}" var="cliente">		
 								<tr>		
@@ -141,9 +140,11 @@
 									<td><c:out value="${cliente.email}" /></td>				
 									<td><c:out value="${cliente.domicilio}" /></td>	
 									<td><c:out value="${cliente.fechaNacimiento}" /></td>
-									<td><c:out value="${cliente.activo}" /></td>				
-									<td><a href="<c:url value='/edit/${cliente.id}' />" >Editar</a></td>
-									<td><a href="<c:url value='/remove/${cliente.id}' />" >Eliminar</a></td>
+									<td><c:out value="${cliente.activo}" /></td>												
+									<td align="center">
+										<a style="padding: 5px;color:gray" href="<c:url value='/edit/${cliente.id}' />"><span class="glyphicon glyphicon-edit"></span></a>
+										<a style="padding: 5px;color:gray;" href="<c:url value='/remove/${cliente.id}' />"><span class="glyphicon glyphicon-remove"></span></a>
+									</td>
 								</tr>
 							</c:forEach>
 							</table>
