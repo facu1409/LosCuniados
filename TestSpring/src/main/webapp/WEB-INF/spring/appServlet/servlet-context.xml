@@ -49,7 +49,9 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">  
             <list>
-                 <value>com.test.domain.Cliente</value>
+            	<value>com.test.domain.Proveedor</value>
+            	<value>com.test.domain.Cliente</value>
+                <value>com.test.domain.Producto</value>
             </list>  
         </property> 
 		<property name="hibernateProperties">
@@ -68,6 +70,11 @@
  	</bean> 
 	<bean id="clienteService" class="com.test.services.ClienteServiceImpl">
 	</bean>
+	<bean id="proveedorDao" class="com.test.dao.ProveedorDaoImpl" > 		
+ 	</bean> 
+	<bean id="proveedorService" class="com.test.services.ProveedorServiceImpl">
+	</bean>
+	
 
 	<bean id="txManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">

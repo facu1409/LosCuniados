@@ -34,7 +34,7 @@ public class ClienteDaoImpl implements ClienteDao {
 		clienteToUpdate.setDniCuit(cliente.getDniCuit());
 		clienteToUpdate.setNombre(cliente.getNombre());
 		clienteToUpdate.setApellido(cliente.getApellido());
-		clienteToUpdate.setTelMovil(cliente.getTelMovil());
+		clienteToUpdate.setTelefono(cliente.getTelefono());
 		clienteToUpdate.setEmail(cliente.getEmail());
 		clienteToUpdate.setDomicilio(cliente.getDomicilio());
 		clienteToUpdate.setFechaNacimiento(cliente.getFechaNacimiento());

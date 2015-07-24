@@ -31,7 +31,7 @@ public class Cliente {
 	private String domicilio;
 	
 	@Column(name="telefono")
-	private int telMovil;	
+	private int telefono;	
 
 	@Column(name="mail")
 	private String email;	
@@ -79,12 +79,12 @@ public class Cliente {
 		this.apellido = apellido;
 	}
 
-	public int getTelMovil() {
-		return telMovil;
+	public int getTelefono() {
+		return telefono;
 	}
 
-	public void setTelMovil(int telMovil) {
-		this.telMovil = telMovil;
+	public void setTelefono(int telefono) {
+		this.telefono = telefono;
 	}
 
 	public String getEmail() {

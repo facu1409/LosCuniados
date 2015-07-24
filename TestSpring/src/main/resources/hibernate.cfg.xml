@@ -5,7 +5,8 @@
  
 <hibernate-configuration>
     <session-factory>
-         <mapping class="com/test/domain/Cliente" />        
+         <mapping class="com/test/domain/Cliente" />
+          <mapping class="com/test/domain/Proveedor" />         
     </session-factory>
          
 </hibernate-configuration>

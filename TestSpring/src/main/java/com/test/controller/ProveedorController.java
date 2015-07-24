@@ -19,11 +19,6 @@ public class ProveedorController {
 	@Autowired
 	ProveedorService proveedorService;
 
-//	@RequestMapping("proveedor")
-//	public ModelAndView getForm(@ModelAttribute Proveedor proveedor) {
-//		return new ModelAndView("proveedor");
-//	}
-	
 	@RequestMapping(value = "/proveedores", method = RequestMethod.GET)
 	public String listProveedores(Model model) {
 		model.addAttribute("proveedor", new Proveedor());

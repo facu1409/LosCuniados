@@ -18,16 +18,15 @@ USE `loscuniados`;
 
 # Dumping structure for table loscuniados.cliente
 CREATE TABLE IF NOT EXISTS `cliente` (
-  `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
-  `id_domicilio` int(8) unsigned NOT NULL DEFAULT '0',
+  `id` int(8) unsigned NOT NULL AUTO_INCREMENT,  
   `dniCuit` int(11) unsigned NOT NULL DEFAULT '0',
   `nombre` varchar(30) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `apellido` varchar(30) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
+  `fechaNacimiento` varchar(30) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',  
+  `domicilio` varchar(50) COLLATE latin1_spanish_ci NOT NULL DEFAULT '', 
   `telefono` int(18) unsigned NOT NULL DEFAULT '0',
-  `mail` varchar(40) COLLATE latin1_spanish_ci DEFAULT '',
-  `fechaNacimiento` date NOT NULL,
-  `ciudad` varchar(50) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
-  `activo` binary(50) NOT NULL DEFAULT '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
+  `mail` varchar(40) COLLATE latin1_spanish_ci DEFAULT '', 
+  `activo` bit NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -159,7 +158,8 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
   `apellido` varchar(40) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `telefono` int(20) NOT NULL DEFAULT '0',
   `mail` varchar(50) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
-  `activo` binary(1) NOT NULL DEFAULT '1',
+  `domicilio` varchar(50) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
+  `activo` bit NOT NULL DEFAULT '1',
   PRIMARY KEY (`int`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 

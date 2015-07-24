@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.test.domain.Proveedor;
 
 @Repository
-public abstract class ProveedorDaoImpl implements ProveedorDao {
+public class ProveedorDaoImpl implements ProveedorDao {
 
 	@Autowired
 	SessionFactory sessionFactory;

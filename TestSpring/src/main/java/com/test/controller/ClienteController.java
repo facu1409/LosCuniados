@@ -45,14 +45,14 @@ public class ClienteController {
 	}
 	
 	@RequestMapping("/remove/{id}")
-    public String removePerson(@PathVariable("id") int id){
+    public String removeCliente(@PathVariable("id") int id){
 		
         this.clienteService.deleteCliente(id);
         return "redirect:/clientes";
     }
  
     @RequestMapping("/edit/{id}")
-    public String editPerson(@PathVariable("id") int id, Model model){
+    public String editCliente(@PathVariable("id") int id, Model model){
         model.addAttribute("cliente", this.clienteService.getClienteById(id));
         model.addAttribute("listClientes", this.clienteService.getList());
         return "cliente";
