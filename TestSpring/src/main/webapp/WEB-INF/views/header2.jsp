@@ -32,7 +32,7 @@
                    <a href="#">Productos</a>
                </li>
                <li>
-                   <a href="#">Proveedores</a>
+                   <a href="proveedores">Proveedores</a>
                </li>
            </ul>
        </div>
