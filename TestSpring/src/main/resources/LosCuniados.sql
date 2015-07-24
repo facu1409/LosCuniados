@@ -145,9 +145,6 @@ CREATE TABLE IF NOT EXISTS `productoproveedor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 ALTER TABLE `loscuniados`.`productoproveedor` 
-DROP FOREIGN KEY `id_producto`,
-DROP FOREIGN KEY `id_proveedor`;
-ALTER TABLE `loscuniados`.`productoproveedor` 
 ADD CONSTRAINT `fk_id_producto`
   FOREIGN KEY (`id_producto`)
   REFERENCES `loscuniados`.`producto` (`id`)
