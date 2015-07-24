@@ -43,6 +43,7 @@
             	<value>com.test.domain.Proveedor</value>
             	<value>com.test.domain.Cliente</value>
                 <value>com.test.domain.Producto</value>
+                <value>com.test.domain.ProductoProveedor</value>                
             </list>  
         </property> 
 		<property name="hibernateProperties">
@@ -57,14 +58,10 @@
     	<property name = "sessionFactory" ref = "sessionFactory" />    
 	</bean>	
 
- 	<bean id="clienteDao" class="com.test.dao.ClienteDaoImpl" > 		
- 	</bean> 
-	<bean id="clienteService" class="com.test.services.ClienteServiceImpl">
-	</bean>
-	<bean id="proveedorDao" class="com.test.dao.ProveedorDaoImpl" > 		
- 	</bean> 
-	<bean id="proveedorService" class="com.test.services.ProveedorServiceImpl">
-	</bean>
+ 	<bean id="clienteDao" class="com.test.dao.ClienteDaoImpl" ></bean> 
+	<bean id="clienteService" class="com.test.services.ClienteServiceImpl"></bean>
+	<bean id="proveedorDao" class="com.test.dao.ProveedorDaoImpl"></bean> 
+	<bean id="proveedorService" class="com.test.services.ProveedorServiceImpl"></bean>
 	
 
 	<bean id="txManager"

@@ -1,20 +1,13 @@
 package com.test.services;
 
-
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.test.dao.ClienteDao;
-import com.test.domain.Cliente;;
-
 @Service
 @Transactional
-public class ProductoServiceImpl implements ClienteService {
+public class ProductoServiceImpl /*implements ClienteService*/ {
 	
-	@Autowired
+	/*@Autowired
 	private ClienteDao clienteDao;
 
 	
@@ -36,7 +29,7 @@ public class ProductoServiceImpl implements ClienteService {
 	
 	public void deleteCliente(int id) {
 		clienteDao.deleteCliente(id);
-	}
+	}*/
 
 }
 

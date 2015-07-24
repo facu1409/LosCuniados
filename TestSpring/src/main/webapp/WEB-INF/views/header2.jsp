@@ -1,11 +1,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<style>
-	
-	body {
-	
+<style>	
+	body {	
 	 	padding-top: 80px  /* Es lo que mide la navbar, para que el texto no se vaya detras, en caso de Fixed*/
-	}
-	
+	}	
 </style>
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -20,7 +17,6 @@
            </button>
            <a class="navbar-brand" href="index.jsp"> Inicio
 <%--                     <img style="color: white;width: 50%;height: 50%" src="<c:url value="/resources/images/carro.png" />" alt=""> --%>
-
            </a>
        </div>
        <!-- Collect the nav links, forms, and other content for toggling -->

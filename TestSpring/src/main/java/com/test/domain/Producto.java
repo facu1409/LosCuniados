@@ -23,6 +23,7 @@ public class Producto {
 	private String nombre;
 	private int stock;
 	private boolean activo;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.producto", cascade=CascadeType.ALL)
 	private Set<ProductoProveedor> productosProveedores = new HashSet<ProductoProveedor>(0);
 	
 	public String getNombre() {
@@ -44,13 +45,13 @@ public class Producto {
 		this.activo = activo;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.producto", cascade=CascadeType.ALL)
-	public Set<ProductoProveedor> getProductosProveedores() {
-		return productosProveedores;
-	}
-	public void setProductosProveedores(Set<ProductoProveedor> productosProveedores) {
-		this.productosProveedores = productosProveedores;
-	}
+	
+//	public Set<ProductoProveedor> getProductosProveedores() {
+//		return productosProveedores;
+//	}
+//	public void setProductosProveedores(Set<ProductoProveedor> productosProveedores) {
+//		this.productosProveedores = productosProveedores;
+//	}
 
 	  
 	

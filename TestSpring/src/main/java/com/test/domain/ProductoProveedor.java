@@ -20,7 +20,7 @@ public class ProductoProveedor implements java.io.Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 	private ProductoProveedorId pk = new ProductoProveedorId();	
 	private double precio;
 	

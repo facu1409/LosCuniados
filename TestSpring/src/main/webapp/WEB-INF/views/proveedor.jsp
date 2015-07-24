@@ -137,8 +137,7 @@
 				</div>	
 			</div>
 		</div>
-	<br>
-	<a href="index">Ir a Inicio</a>
+	<br>	
 	</div>
 </body>
 </html>

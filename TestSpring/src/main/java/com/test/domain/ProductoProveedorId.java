@@ -9,7 +9,7 @@ public class ProductoProveedorId implements java.io.Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3524310599502941130L;
+	//private static final long serialVersionUID = 3524310599502941130L;
 	private Producto producto;
     private Proveedor proveedor;
  

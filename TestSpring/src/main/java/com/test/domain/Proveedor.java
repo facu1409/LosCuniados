@@ -41,6 +41,7 @@ public class Proveedor {
 	@Column(name="activo")
 	private Boolean activo;
 	
+	@OneToMany(targetEntity=ProductoProveedor.class, mappedBy="pk.proveedor", fetch=FetchType.EAGER)	
 	private Set<ProductoProveedor> productosProveedores = new HashSet<ProductoProveedor>(0);
 
 	public int getId() {
@@ -103,13 +104,13 @@ public class Proveedor {
 		this.activo = activo;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.proveedor")
-	public Set<ProductoProveedor> getProductosProveedores() {
-		return productosProveedores;
-	}
-
-	public void setProductosProveedores(Set<ProductoProveedor> productosProveedores) {
-		this.productosProveedores = productosProveedores;
-	}	
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.proveedor")
+//	public Set<ProductoProveedor> getProductosProveedores() {
+//		return productosProveedores;
+//	}
+//
+//	public void setProductosProveedores(Set<ProductoProveedor> productosProveedores) {
+//		this.productosProveedores = productosProveedores;
+//	}	
 	
 }
