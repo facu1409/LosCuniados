@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `factura` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `id_tipoFactura` int(8) NOT NULL DEFAULT '0',
   `id_Cliente` int(8) NOT NULL DEFAULT '0',
-  `activo` binary(1) NOT NULL DEFAULT '1',
+  `activo` bit NOT NULL DEFAULT 1,
   `fecha` date NOT NULL,
   `monto` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `stock` int(6) NOT NULL DEFAULT '0',
-  `activo` binary(1) NOT NULL DEFAULT '1',
+  `activo` bit NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -140,10 +140,24 @@ CREATE TABLE IF NOT EXISTS `productoproveedor` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `id_producto` int(8) NOT NULL DEFAULT '0',
   `id_proveedor` int(8) NOT NULL DEFAULT '0',
-  `precio` float NOT NULL DEFAULT '0',
-  `activo` binary(1) NOT NULL DEFAULT '1',
+  `precio` float NOT NULL DEFAULT '0', 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+ALTER TABLE `loscuniados`.`productoproveedor` 
+DROP FOREIGN KEY `id_producto`,
+DROP FOREIGN KEY `id_proveedor`;
+ALTER TABLE `loscuniados`.`productoproveedor` 
+ADD CONSTRAINT `fk_id_producto`
+  FOREIGN KEY (`id_producto`)
+  REFERENCES `loscuniados`.`producto` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_id_proveedor`
+  FOREIGN KEY (`id_proveedor`)
+  REFERENCES `loscuniados`.`proveedor` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
 
 # Dumping data for table loscuniados.productoproveedor: 0 rows
 /*!40000 ALTER TABLE `productoproveedor` DISABLE KEYS */;
@@ -152,15 +166,15 @@ CREATE TABLE IF NOT EXISTS `productoproveedor` (
 
 # Dumping structure for table loscuniados.proveedor
 CREATE TABLE IF NOT EXISTS `proveedor` (
-  `int` int(8) NOT NULL AUTO_INCREMENT,
+  `id` int(8) NOT NULL AUTO_INCREMENT,
   `cuit` int(11) NOT NULL DEFAULT '0',
   `nombre` varchar(40) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `apellido` varchar(40) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `telefono` int(20) NOT NULL DEFAULT '0',
   `mail` varchar(50) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `domicilio` varchar(50) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
-  `activo` bit NOT NULL DEFAULT '1',
-  PRIMARY KEY (`int`)
+  `activo` bit NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 # Dumping data for table loscuniados.proveedor: 0 rows
@@ -182,9 +196,9 @@ CREATE TABLE IF NOT EXISTS `tipodepago` (
 
 # Dumping structure for table loscuniados.tipofactura
 CREATE TABLE IF NOT EXISTS `tipofactura` (
-  `Column 1` int(8) NOT NULL AUTO_INCREMENT,
+  `id` int(8) NOT NULL AUTO_INCREMENT,
   `nombre` char(1) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`Column 1`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 # Dumping data for table loscuniados.tipofactura: 0 rows

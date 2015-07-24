@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 	
 	body {
@@ -18,7 +19,7 @@
                <span class="icon-bar"></span>
            </button>
            <a class="navbar-brand" href="index.jsp"> Inicio
-<!--                     <img src="http://placehold.it/150x50&amp;text=Logo" alt=""> -->
+<%--                     <img style="color: white;width: 50%;height: 50%" src="<c:url value="/resources/images/carro.png" />" alt=""> --%>
 
            </a>
        </div>

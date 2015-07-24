@@ -40,14 +40,14 @@ public class ProveedorController {
 		return "redirect:/proveedores";		
 	}
 	
-	@RequestMapping("/remove/{id}")
+	@RequestMapping("/removeProveedor/{id}")
     public String removeProveedor(@PathVariable("id") int id){
 		
         this.proveedorService.deleteProveedor(id);
         return "redirect:/proveedores";
     }
  
-    @RequestMapping("/edit/{id}")
+    @RequestMapping("/editProveedor/{id}")
     public String editProveedor(@PathVariable("id") int id, Model model){
         model.addAttribute("proveedor", this.proveedorService.getProveedorById(id));
         model.addAttribute("listProveedores", this.proveedorService.getList());

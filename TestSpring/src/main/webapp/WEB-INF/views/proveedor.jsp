@@ -125,8 +125,8 @@
 									<td><c:out value="${proveedor.domicilio}" /></td>	
 									<td><c:out value="${proveedores.activo}" /></td>												
 									<td align="center">
-										<a style="padding: 5px;color:gray" href="<c:url value='/edit/${proveedor.id}' />"><span class="glyphicon glyphicon-edit"></span></a>
-										<a style="padding: 5px;color:gray;" href="<c:url value='/remove/${proveedor.id}' />"><span class="glyphicon glyphicon-remove"></span></a>
+										<a style="padding: 5px;color:gray" href="<c:url value='/editProveedor/${proveedor.id}' />"><span class="glyphicon glyphicon-edit"></span></a>
+										<a style="padding: 5px;color:gray;" href="<c:url value='/removeProveedor/${proveedor.id}' />"><span class="glyphicon glyphicon-remove"></span></a>
 									</td>
 								</tr>
 							</c:forEach>

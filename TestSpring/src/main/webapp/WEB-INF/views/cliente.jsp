@@ -39,7 +39,7 @@
 								<div class="col-md-4">	
 									<div class="form-group">
 										<form:label class="control-label" for="dniCuit" path="dniCuit">DNI/CUIT:</form:label><br />
-										<form:input class="form-control" id="dniCuit" path="dniCuit" />				
+										<form:input value="" class="form-control" id="dniCuit" path="dniCuit" />				
 									</div>
 								</div>
 								<div class="col-md-4">	
@@ -59,8 +59,8 @@
 							<div class="row">
 								<div class="col-md-4">	
 									<div class="form-group">
-										<form:label class="control-label" path="telMovil">Celular:</form:label><br />
-										<form:input class="form-control"  path="telMovil" />
+										<form:label class="control-label" path="telefono">Celular:</form:label><br />
+										<form:input class="form-control"  path="telefono" />
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -136,7 +136,7 @@
 									<td><c:out value="${cliente.dniCuit}" /></td>				
 									<td><c:out value="${cliente.nombre}" /></td>
 									<td><c:out value="${cliente.apellido}" /></td>
-									<td><c:out value="${cliente.telMovil}" /></td>
+									<td><c:out value="${cliente.telefono}" /></td>
 									<td><c:out value="${cliente.email}" /></td>				
 									<td><c:out value="${cliente.domicilio}" /></td>	
 									<td><c:out value="${cliente.fechaNacimiento}" /></td>

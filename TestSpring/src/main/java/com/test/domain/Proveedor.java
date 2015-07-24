@@ -1,9 +1,14 @@
 package com.test.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +21,7 @@ public class Proveedor {
 	private int id;	
 	
 	@Column(name="cuit")
-	private int cuit;	
+	private int cuit;
 	
 	@Column(name="nombre")
 	private String nombre;
@@ -35,6 +40,8 @@ public class Proveedor {
 	
 	@Column(name="activo")
 	private Boolean activo;
+	
+	private Set<ProductoProveedor> productosProveedores = new HashSet<ProductoProveedor>(0);
 
 	public int getId() {
 		return id;
@@ -95,8 +102,14 @@ public class Proveedor {
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
 	}
-	
-	
-	
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.proveedor")
+	public Set<ProductoProveedor> getProductosProveedores() {
+		return productosProveedores;
+	}
+
+	public void setProductosProveedores(Set<ProductoProveedor> productosProveedores) {
+		this.productosProveedores = productosProveedores;
+	}	
 	
 }

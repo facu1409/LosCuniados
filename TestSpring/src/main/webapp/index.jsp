@@ -8,14 +8,13 @@
 <body>
 	<jsp:include page="WEB-INF/views/header2.jsp"></jsp:include>
 	<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="page-header">
-							<h1>Los Cuñados <small> Minimercado</small></h1>
-						</div>
-					</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="page-header">
+					<h1>Titulo <small> Subtitulo</small></h1>
 				</div>
-			<a href="clientes">Gestion de Clientes</a>
+			</div>
+		</div>			
 	</div>
 </body>
 </html>
