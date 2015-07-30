@@ -18,14 +18,14 @@ public class ProveedorDaoImpl implements ProveedorDao {
 	private Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
 	}
-	
+
 	public Proveedor getProveedorById(int id) {
 		Proveedor proveedor = (Proveedor) getCurrentSession().get(Proveedor.class, id);
 		return proveedor;
 	}
-	
+
 	public void insertProveedor(Proveedor proveedor) {
-		//proveedor.setActivo(true);
+		proveedor.setActivo(true);
 		getCurrentSession().save(proveedor);
 	}
 
@@ -35,21 +35,24 @@ public class ProveedorDaoImpl implements ProveedorDao {
 		proveedorToUpdate.setNombre(proveedor.getNombre());
 		proveedorToUpdate.setApellido(proveedor.getApellido());
 		proveedorToUpdate.setTelefono(proveedor.getTelefono());
-		proveedorToUpdate.setMail(proveedor.getMail());;
-		
-		getCurrentSession().update(proveedorToUpdate);		
-	}
-	
-	public void deleteProveedor(int id) {
-		Proveedor proveedor = getProveedorById(id);
-		if (proveedor != null)
-			getCurrentSession().delete(proveedor);
+		proveedorToUpdate.setMail(proveedor.getMail());
+		proveedorToUpdate.setDomicilio(proveedor.getDomicilio());
+
+		getCurrentSession().update(proveedorToUpdate);
 	}
 
+	public void deleteProveedor(int id) {
+		Proveedor proveedor = getProveedorById(id);
+		if (proveedor != null) {
+			proveedor.setActivo(false);
+			getCurrentSession().update(proveedor);
+		}
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Proveedor> getList() {
-		return getCurrentSession().createQuery("from Proveedor").list();
-	}		
+		return getCurrentSession().createQuery(
+				"from Proveedor where activo = 1").list();
+	}
 
 }

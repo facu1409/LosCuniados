@@ -62,6 +62,8 @@
 	<bean id="clienteService" class="com.test.services.ClienteServiceImpl"></bean>
 	<bean id="proveedorDao" class="com.test.dao.ProveedorDaoImpl"></bean> 
 	<bean id="proveedorService" class="com.test.services.ProveedorServiceImpl"></bean>
+	<bean id="productoDao" class="com.test.dao.ProductoDaoImpl"></bean> 
+	<bean id="productoService" class="com.test.services.ProductoServiceImpl"></bean>
 	
 
 	<bean id="txManager"

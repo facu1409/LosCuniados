@@ -7,10 +7,10 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Clientes</title>
-		<jsp:include page="header.jsp"></jsp:include>
+		<jsp:include page="importLibrerias.jsp"></jsp:include>
 	</head>
 <body>
-	<jsp:include page="header2.jsp"></jsp:include>
+	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
 	<br />
 		<div class="row">
@@ -83,16 +83,7 @@
 										<form:label class="control-label" path="domicilio">Domicilio:</form:label><br />
 										<form:input class="form-control"  path="domicilio" />					
 									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="form-group">
-										<div class="checkbox">
-											<label class="control-label">
-												<form:checkbox path="activo" checked="checked"/> Activo		
-											</label>
-										</div>									
-									</div>
-								</div>
+								</div>								
 							</div>
 							<br />
 							<div class="row">
@@ -121,15 +112,14 @@
 						<div class="table-responsive">
 							<table class="table table-bordered table-hover">		
 								<tr class="active success">
-									<th>Documento</th>			
+									<th>DNI/CUIT</th>			
 									<th>Nombre</th>
 									<th>Apellido</th>
 									<th>Celular</th>
 									<th>Email</th>
 									<th>Domicilio</th>
-									<th>Fecha de Nacimiento</th>
-									<th>Activo</th>		
-									<th>Acciones</th>									
+									<th>Fecha de Nacimiento</th>										
+									<th>Acciones</th>					
 								</tr>				
 							<c:forEach items="${listClientes}" var="cliente">		
 								<tr>		
@@ -139,8 +129,7 @@
 									<td><c:out value="${cliente.telefono}" /></td>
 									<td><c:out value="${cliente.email}" /></td>				
 									<td><c:out value="${cliente.domicilio}" /></td>	
-									<td><c:out value="${cliente.fechaNacimiento}" /></td>
-									<td><c:out value="${cliente.activo}" /></td>												
+									<td><c:out value="${cliente.fechaNacimiento}" /></td>																					
 									<td align="center">
 										<a style="padding: 5px;color:gray" href="<c:url value='/edit/${cliente.id}' />"><span class="glyphicon glyphicon-edit"></span></a>
 										<a style="padding: 5px;color:gray;" href="<c:url value='/remove/${cliente.id}' />"><span class="glyphicon glyphicon-remove"></span></a>
@@ -154,8 +143,7 @@
 				</div>	
 			</div>
 		</div>
-	<br>
-	<a href="index">Ir a Inicio</a>
+	<br>	
 	</div>
 </body>
 </html>

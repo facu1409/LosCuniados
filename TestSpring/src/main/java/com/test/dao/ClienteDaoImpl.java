@@ -18,14 +18,14 @@ public class ClienteDaoImpl implements ClienteDao {
 	private Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
 	}
-	
+
 	public Cliente getClienteById(int id) {
 		Cliente cliente = (Cliente) getCurrentSession().get(Cliente.class, id);
 		return cliente;
 	}
-	
+
 	public void insertCliente(Cliente cliente) {
-		//cliente.setActivo(true);
+		cliente.setActivo(true);
 		getCurrentSession().save(cliente);
 	}
 
@@ -38,21 +38,22 @@ public class ClienteDaoImpl implements ClienteDao {
 		clienteToUpdate.setEmail(cliente.getEmail());
 		clienteToUpdate.setDomicilio(cliente.getDomicilio());
 		clienteToUpdate.setFechaNacimiento(cliente.getFechaNacimiento());
-		clienteToUpdate.setActivo(cliente.getActivo());
-		
-		getCurrentSession().update(clienteToUpdate);		
-	}
-	
-	public void deleteCliente(int id) {
-		Cliente cliente = getClienteById(id);
-		if (cliente != null)
-			getCurrentSession().delete(cliente);
+
+		getCurrentSession().update(clienteToUpdate);
 	}
 
+	public void deleteCliente(int id) {
+		Cliente cliente = getClienteById(id);
+		if (cliente != null) {
+			cliente.setActivo(false);
+			getCurrentSession().update(cliente);
+		}
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Cliente> getList() {
-		return getCurrentSession().createQuery("from Cliente").list();
-	}		
+		return getCurrentSession().createQuery("from Cliente where activo = 1")
+				.list();
+	}
 
 }

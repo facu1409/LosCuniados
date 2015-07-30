@@ -1,35 +1,41 @@
 package com.test.services;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.test.dao.ProductoDao;
+import com.test.domain.Producto;
+
 @Service
 @Transactional
-public class ProductoServiceImpl /*implements ClienteService*/ {
+public class ProductoServiceImpl implements ProductoService {
 	
-	/*@Autowired
-	private ClienteDao clienteDao;
+	@Autowired
+	private ProductoDao productoDao;
 
 	
-	public void insertCliente(Cliente cliente) {
-		clienteDao.insertCliente(cliente);
+	public void insertProducto(Producto producto) {
+		productoDao.insertProducto(producto);
 	}
 	
-	public List<Cliente> getList() {
-		return clienteDao.getList();
+	public List<Producto> getList() {
+		return productoDao.getList();
 	}
 	
-	public Cliente getClienteById(int id) {
-		return clienteDao.getClienteById(id);
+	public Producto getProductoById(int id) {
+		return productoDao.getProductoById(id);
 	}
 	
-	public void updateCliente(Cliente cliente) {
-		clienteDao.updateCliente(cliente);
+	public void updateProducto(Producto producto) {
+		productoDao.updateProducto(producto);
 	}
 	
-	public void deleteCliente(int id) {
-		clienteDao.deleteCliente(id);
-	}*/
+	public void deleteProducto(int id) {
+		productoDao.deleteProducto(id);
+	}
 
 }
 

@@ -12,40 +12,45 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="proveedor")//Este nombre debe ser igual a la base de datos
+@Table(name = "proveedor")// Este nombre debe ser igual a la base de datos
 public class Proveedor {
 
 	@Id
 	@GeneratedValue
-	@Column(name="id")
-	private int id;	
-	
-	@Column(name="cuit")
-	private int cuit;
-	
-	@Column(name="nombre")
-	private String nombre;
-	
-	@Column(name="apellido")
-	private String apellido;
-		
-	@Column(name="domicilio")
-	private String domicilio;
-	
-	@Column(name="telefono")
-	private int telefono;	
+	@Column(name = "id")
+	private int id;
 
-	@Column(name="mail")
-	private String mail;	
-	
-	@Column(name="activo")
+	@Column(name = "cuit")
+	private int cuit;
+
+	@Column(name = "nombre")
+	private String nombre;
+
+	@Column(name = "apellido")
+	private String apellido;
+
+	@Column(name = "domicilio")
+	private String domicilio;
+
+	@Column(name = "telefono")
+	private int telefono;
+
+	@Column(name = "mail")
+	private String mail;
+
+	@Column(name = "activo")
 	private Boolean activo;
-	
-	@OneToMany(targetEntity=ProductoProveedor.class, mappedBy="pk.proveedor", fetch=FetchType.EAGER)	
-	private Set<ProductoProveedor> productosProveedores = new HashSet<ProductoProveedor>(0);
+
+	@OneToMany(targetEntity = ProductoProveedor.class, mappedBy = "pk.proveedor", fetch = FetchType.EAGER)
+	private Set<ProductoProveedor> productosProveedores = new HashSet<ProductoProveedor>(
+			0);
 
 	public int getId() {
 		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getDomicilio() {
@@ -104,13 +109,14 @@ public class Proveedor {
 		this.activo = activo;
 	}
 
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.proveedor")
-//	public Set<ProductoProveedor> getProductosProveedores() {
-//		return productosProveedores;
-//	}
-//
-//	public void setProductosProveedores(Set<ProductoProveedor> productosProveedores) {
-//		this.productosProveedores = productosProveedores;
-//	}	
-	
+	// @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.proveedor")
+	// public Set<ProductoProveedor> getProductosProveedores() {
+	// return productosProveedores;
+	// }
+	//
+	// public void setProductosProveedores(Set<ProductoProveedor>
+	// productosProveedores) {
+	// this.productosProveedores = productosProveedores;
+	// }
+
 }

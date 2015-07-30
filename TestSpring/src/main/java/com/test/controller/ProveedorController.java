@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.test.domain.Proveedor;
 import com.test.services.ProveedorService;
 
-
-
 @Controller
 public class ProveedorController {
 

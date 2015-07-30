@@ -7,10 +7,10 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Proveedores</title>
-		<jsp:include page="header.jsp"></jsp:include>
+		<jsp:include page="importLibrerias.jsp"></jsp:include>
 	</head>
 <body>
-	<jsp:include page="header2.jsp"></jsp:include>
+	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
 	<br />
 		<div class="row">
@@ -21,7 +21,7 @@
 							Proveedor
 						</h3>
 						<c:url var="addAction" value="/proveedor/add" ></c:url>
-						<br />
+						<br />						
 						<form:form class="form-inline" action="${addAction}" commandName="proveedor">		
 							<c:if test="${!empty proveedor.nombre}">							
 								<div class="row">
@@ -85,7 +85,7 @@
 									<c:if test="${!empty proveedor.nombre}">
 										<input class="btn btn-primary" type="submit" value="Editar" />
 									</c:if>    
-									<c:if test="${empty cliente.nombre}">
+									<c:if test="${empty proveedor.nombre}">
 										<input class="btn btn-success" type="submit" value="Agregar" />
 									</c:if>
 								</div>
@@ -102,7 +102,7 @@
 					<div class="panel-body">
 						<h3 class="text-primary">Listado Proveedores</h3>
 						<br />
-						<c:if test="${!empty listProveedore}">
+						<c:if test="${!empty listProveedores}">
 						<div class="table-responsive">
 							<table class="table table-bordered table-hover">		
 								<tr class="active success">
@@ -111,19 +111,17 @@
 									<th>Apellido</th>
 									<th>Telefono</th>
 									<th>Mail</th>
-									<th>Domicilio</th>
-									<th>Activo</th>		
+									<th>Domicilio</th>									
 									<th>Acciones</th>									
 								</tr>				
-							<c:forEach items="${listProveedores}" var="proveedores">		
+							<c:forEach items="${listProveedores}" var="proveedor">		
 								<tr>		
 									<td><c:out value="${proveedor.cuit}" /></td>				
 									<td><c:out value="${proveedor.nombre}" /></td>
 									<td><c:out value="${proveedor.apellido}" /></td>
 									<td><c:out value="${proveedor.telefono}" /></td>
 									<td><c:out value="${proveedor.mail}" /></td>				
-									<td><c:out value="${proveedor.domicilio}" /></td>	
-									<td><c:out value="${proveedores.activo}" /></td>												
+									<td><c:out value="${proveedor.domicilio}" /></td>																		
 									<td align="center">
 										<a style="padding: 5px;color:gray" href="<c:url value='/editProveedor/${proveedor.id}' />"><span class="glyphicon glyphicon-edit"></span></a>
 										<a style="padding: 5px;color:gray;" href="<c:url value='/removeProveedor/${proveedor.id}' />"><span class="glyphicon glyphicon-remove"></span></a>

@@ -57,36 +57,6 @@ public class ClienteController {
         model.addAttribute("listClientes", this.clienteService.getList());
         return "cliente";
     }
-	
-//	@RequestMapping("clienteRegister")
-//	public ModelAndView registerCliente(@ModelAttribute Cliente cliente) {
-//		clienteService.insertCliente(cliente);
-//		return new ModelAndView("redirect:clienteList");
-//	}
-//	
-//	@RequestMapping("clienteList")
-//	public ModelAndView getList() {
-//		List<Cliente> clienteList = clienteService.getList();
-//		return new ModelAndView("clienteList","clienteList",clienteList);
-//	}
-//	
-//	@RequestMapping("clienteDelete")
-//	public ModelAndView deleteCliente(@RequestParam int id) {
-//		clienteService.deleteCliente(id);
-//		return new ModelAndView("redirect:clienteList");
-//	}
-//	
-//	@RequestMapping("clienteEdit")
-//	public ModelAndView editCliente(@RequestParam int id,@ModelAttribute Cliente cliente) {
-//		Cliente clienteObject = clienteService.getClienteById(id);
-//		return new ModelAndView("clienteEdit","clienteObject",clienteObject);
-//	}
-//	
-//	@RequestMapping("clienteUpdate")
-//	public ModelAndView updateCliente(@RequestParam int id,@ModelAttribute Cliente cliente) {
-//		cliente.setClienteID(id);
-//		clienteService.updateCliente(cliente);
-//		return new ModelAndView("redirect:clienteList");
-//	}
+
 
 }
