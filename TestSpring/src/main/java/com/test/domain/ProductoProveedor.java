@@ -15,12 +15,8 @@ import javax.persistence.Transient;
 			joinColumns = @JoinColumn(name = "id_proveedor")),
 		@AssociationOverride(name = "pk.producto", 
 			joinColumns = @JoinColumn(name = "id_producto")) })
-public class ProductoProveedor implements java.io.Serializable {
- 
-	/**
-	 * 
-	 */
-	//private static final long serialVersionUID = 1L;
+public class ProductoProveedor {
+ 	
 	private ProductoProveedorId pk = new ProductoProveedorId();	
 	private double precio;
 	

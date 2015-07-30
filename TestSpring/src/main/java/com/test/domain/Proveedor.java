@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "proveedor")// Este nombre debe ser igual a la base de datos
+@Table(name = "proveedor")
 public class Proveedor {
 
 	@Id

@@ -14,7 +14,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "producto")
-// Este nombre debe ser igual a la base de datos
 public class Producto {
 
 	@Id

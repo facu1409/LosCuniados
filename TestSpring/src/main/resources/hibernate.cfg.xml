@@ -16,5 +16,13 @@
         <mapping class="com/test/domain/Proveedor" />
 		<mapping class="com/test/domain/ProductoProveedor"/>
 		<mapping class="com/test/domain/Producto" />
+		<mapping class="com/test/domain/Factura" />
+		<mapping class="com/test/domain/Compra" />
+		<mapping class="com/test/domain/LineaCompra" />
+		<mapping class="com/test/domain/LineaFactura" />
+		<mapping class="com/test/domain/Pago" />
+		<mapping class="com/test/domain/PagoFactura" />
+		<mapping class="com/test/domain/TipoDePago" />
+		<mapping class="com/test/domain/TipoFactura" />
     </session-factory>         
 </hibernate-configuration>

@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cliente")//Este nombre debe ser igual a la base de datos
+@Table(name="cliente")
 public class Cliente {
 
 	@Id

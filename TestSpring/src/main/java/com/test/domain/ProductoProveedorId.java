@@ -4,12 +4,8 @@ import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class ProductoProveedorId implements java.io.Serializable {
-
-	/**
-	 * 
-	 */
-	// private static final long serialVersionUID = 3524310599502941130L;
+public class ProductoProveedorId {
+	
 	private Producto producto;
 	private Proveedor proveedor;
 
