@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-jul-2015 14:50:51 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="Cliente" table="cliente" catalog="loscuniados">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="dniCuit" type="int">
+            <column name="dniCuit" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="30" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="30" not-null="true" />
+        </property>
+        <property name="fechaNacimiento" type="string">
+            <column name="fechaNacimiento" length="30" not-null="true" />
+        </property>
+        <property name="domicilio" type="string">
+            <column name="domicilio" length="50" not-null="true" />
+        </property>
+        <property name="telefono" type="int">
+            <column name="telefono" not-null="true" />
+        </property>
+        <property name="mail" type="string">
+            <column name="mail" length="40" />
+        </property>
+        <property name="activo" type="boolean">
+            <column name="activo" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

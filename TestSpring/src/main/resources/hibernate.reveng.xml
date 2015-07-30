@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table-filter match-catalog="loscuniados" match-name="cliente" />
+	<table-filter match-catalog="loscuniados" match-name="compra" />
+	<table-filter match-catalog="loscuniados" match-name="factura" />
+	<table-filter match-catalog="loscuniados" match-name="lineacompra" />
+	<table-filter match-catalog="loscuniados" match-name="lineafactura" />
+	<table-filter match-catalog="loscuniados" match-name="pago" />
+	<table-filter match-catalog="loscuniados" match-name="pagofactura" />
+	<table-filter match-catalog="loscuniados" match-name="producto" />
+	<table-filter match-catalog="loscuniados"
+		match-name="productoproveedor" />
+	<table-filter match-catalog="loscuniados" match-name="proveedor" />
+	<table-filter match-catalog="loscuniados" match-name="tipodepago" />
+	<table-filter match-catalog="loscuniados" match-name="tipofactura" />
+	<table catalog="loscuniados" name="productoproveedor">
+		<column name="id_producto"></column>
+		<column name="id_proveedor"></column>
+		<column name="id_producto"></column>
+		<column name="id_proveedor"></column>
+		<column name="precio"></column>
+	</table>
+	<table catalog="loscuniados" name="tipodepago">
+		<column name="id"></column>
+		<column name="nombre"></column>
+	</table>
+	<table catalog="loscuniados" name="factura">
+		<column name="id"></column>
+		<column name="id_tipoFactura"></column>
+		<column name="id_Cliente"></column>
+		<column name="activo"></column>
+		<column name="fecha"></column>
+		<column name="monto"></column>
+	</table>
+	<table catalog="loscuniados" name="pagofactura">
+		<column name="id"></column>
+		<column name="id_Pago"></column>
+		<column name="id_Factura"></column>
+	</table>
+	<table catalog="loscuniados" name="compra">
+		<column name="id"></column>
+		<column name="id_proveedor"></column>
+		<column name="fecha"></column>
+		<column name="monto"></column>
+	</table>
+	<table catalog="loscuniados" name="lineafactura">
+		<column name="id"></column>
+		<column name="id_producto"></column>
+		<column name="cantidad"></column>
+		<column name="total"></column>
+	</table>
+	<table catalog="loscuniados" name="cliente">
+		<column name="id"></column>
+		<column name="dniCuit"></column>
+		<column name="nombre"></column>
+		<column name="apellido"></column>
+		<column name="fechaNacimiento"></column>
+		<column name="domicilio"></column>
+		<column name="telefono"></column>
+		<column name="mail"></column>
+		<column name="activo"></column>
+	</table>
+	<table catalog="loscuniados" name="tipofactura">
+		<column name="id"></column>
+		<column name="nombre"></column>
+	</table>
+	<table catalog="loscuniados" name="pago">
+		<column name="id"></column>
+		<column name="id_cliente"></column>
+		<column name="id_tipoDePago"></column>
+		<column name="fecha"></column>
+		<column name="monto"></column>
+	</table>
+	<table catalog="loscuniados" name="producto">
+		<column name="id"></column>
+		<column name="nombre"></column>
+		<column name="stock"></column>
+		<column name="activo"></column>
+	</table>
+	<table catalog="loscuniados" name="lineacompra">
+		<column name="id"></column>
+		<column name="id_producto"></column>
+		<column name="cantidad"></column>
+		<column name="total"></column>
+	</table>
+	<table catalog="loscuniados" name="proveedor">
+		<column name="id"></column>
+		<column name="cuit"></column>
+		<column name="nombre"></column>
+		<column name="apellido"></column>
+		<column name="telefono"></column>
+		<column name="mail"></column>
+		<column name="domicilio"></column>
+		<column name="activo"></column>
+	</table>
+</hibernate-reverse-engineering>
