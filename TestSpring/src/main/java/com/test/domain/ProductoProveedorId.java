@@ -4,7 +4,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class ProductoProveedorId {
+public class ProductoProveedorId implements java.io.Serializable {
 	
 	private Producto producto;
 	private Proveedor proveedor;

@@ -15,7 +15,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "producto")
 public class Producto {
-
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
@@ -24,8 +23,7 @@ public class Producto {
 	private int stock;
 	private boolean activo;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.producto", cascade = CascadeType.ALL)
-	private Set<ProductoProveedor> productosProveedores = new HashSet<ProductoProveedor>(
-			0);
+	private Set<ProductoProveedor> productosProveedores = new HashSet<ProductoProveedor>(0);
 
 	public int getId() {
 		return id;

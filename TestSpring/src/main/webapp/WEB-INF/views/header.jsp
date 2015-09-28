@@ -29,7 +29,10 @@
                    <a href="productos">Productos</a>
                </li>
                <li>
-                   <a href="proveedores">Proveedores</a>
+                   <a href="proveedores">Proveedores</a>                   
+               </li>
+                <li>
+                   <a href="facturas">Facturas</a>                
                </li>
            </ul>
        </div>

@@ -19,9 +19,9 @@
   	 
 
 	<context:component-scan base-package="com.test.controller" />
-<!-- 	<context:property-placeholder location="classpath:database.properties" /> -->
+	<!-- 	<context:property-placeholder location="classpath:database.properties" /> -->
 	
-	<mvc:resources mapping="/resources/**" location="/resources/" /> 
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:annotation-driven />
 	
     <!--Permite usar entre otras la anotación @Autowired -->
@@ -43,7 +43,9 @@
             	<value>com.test.domain.Proveedor</value>
             	<value>com.test.domain.Cliente</value>
                 <value>com.test.domain.Producto</value>
-                <value>com.test.domain.ProductoProveedor</value>                
+                <value>com.test.domain.ProductoProveedor</value> 
+                <value>com.test.domain.Factura</value>
+                <value>com.test.domain.LineaFactura</value>         
             </list>  
         </property> 
 		<property name="hibernateProperties">
@@ -64,6 +66,10 @@
 	<bean id="proveedorService" class="com.test.services.ProveedorServiceImpl"></bean>
 	<bean id="productoDao" class="com.test.dao.ProductoDaoImpl"></bean> 
 	<bean id="productoService" class="com.test.services.ProductoServiceImpl"></bean>
+	<bean id="facturaDao" class="com.test.dao.FacturaDaoImpl"></bean> 
+	<bean id="facturaService" class="com.test.services.FacturaServiceImpl"></bean>
+	<bean id="lineaFacturaDao" class="com.test.dao.LineaFacturaDaoImpl"></bean> 
+	<bean id="lineaFacturaService" class="com.test.services.LineaFacturaServiceImpl"></bean>
 	
 
 	<bean id="txManager"

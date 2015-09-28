@@ -10,6 +10,14 @@
 		<jsp:include page="importLibrerias.jsp"></jsp:include>
 	</head>
 <body>
+<script>
+ $(function () {
+                $('#datetimepicker2').datetimepicker({
+                    locale: 'es',
+                    format: 'DD/MM/YYYY'
+                });
+            });
+</script>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
 	<br />
@@ -72,7 +80,12 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<form:label class="control-label" path="fechaNacimiento">Fecha de Nacimiento:</form:label><br />
-										<form:input class="form-control"  path="fechaNacimiento" />
+										  <div class='input-group date' id='datetimepicker2'>
+						                    <form:input type='text' class="form-control" path="fechaNacimiento" />
+						                    <span class="input-group-addon">
+						                        <span class="glyphicon glyphicon-calendar"></span>
+						                    </span>
+						                </div>
 									</div>
 								</div>
 							</div>

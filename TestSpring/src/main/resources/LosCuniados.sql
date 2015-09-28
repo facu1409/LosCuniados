@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `lineacompra` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `id_producto` int(8) NOT NULL DEFAULT '0',
   `cantidad` int(6) NOT NULL DEFAULT '0',
+  `precio_unitario` float NOT NULL DEFAULT '0',
   `total` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -84,10 +85,20 @@ CREATE TABLE IF NOT EXISTS `lineafactura` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `id_producto` int(8) NOT NULL DEFAULT '0',
   `cantidad` int(8) NOT NULL DEFAULT '0',
+  `precio_unitario` float NOT NULL DEFAULT '0',
+  `id_factura` int(8) NOT NULL DEFAULT '0',
   `total` int(6) NOT NULL DEFAULT '0',
+  
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
+ALTER TABLE `loscuniados`.`lineafactura` 
+ADD CONSTRAINT `fk_id_factura`
+  FOREIGN KEY (`id_factura`)
+  REFERENCES `loscuniados`.`factura` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+  
 # Dumping data for table loscuniados.lineafactura: 0 rows
 /*!40000 ALTER TABLE `lineafactura` DISABLE KEYS */;
 /*!40000 ALTER TABLE `lineafactura` ENABLE KEYS */;

@@ -3,6 +3,8 @@ package com.test.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,15 +15,21 @@ public class LineaFactura {
 	private Integer id;
 	private int idProducto;
 	private int cantidad;
-	private int total;
+	private double total;
+	private double precioUnitario;
+	@ManyToOne
+	@JoinColumn(name="id_factura")	
+	private Factura factura;
 
 	public LineaFactura() {
 	}
 
-	public LineaFactura(int idProducto, int cantidad, int total) {
+	public LineaFactura(int idProducto, int cantidad, double total,double precioUnitario, Factura factura) {
 		this.idProducto = idProducto;
 		this.cantidad = cantidad;
 		this.total = total;
+		this.precioUnitario = precioUnitario;
+		this.setFactura(factura);
 	}
 
 	public Integer getId() {
@@ -48,12 +56,28 @@ public class LineaFactura {
 		this.cantidad = cantidad;
 	}
 
-	public int getTotal() {
+	public double getTotal() {
 		return this.total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotal(double total) {
 		this.total = total;
+	}
+
+	public double getPrecioUnitario() {
+		return precioUnitario;
+	}
+
+	public void setPrecioUnitario(double precioUnitario) {
+		this.precioUnitario = precioUnitario;
+	}
+
+	public Factura getFactura() {
+		return factura;
+	}
+
+	public void setFactura(Factura factura) {
+		this.factura = factura;
 	}
 
 }

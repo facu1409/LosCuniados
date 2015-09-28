@@ -9,7 +9,7 @@ import com.test.domain.Producto;
 @Transactional
 public interface ProductoService {
 	
-	public void insertProducto(Producto profesional);
+	public void insertProducto(Producto producto);
 
 	public List<Producto> getList();
 

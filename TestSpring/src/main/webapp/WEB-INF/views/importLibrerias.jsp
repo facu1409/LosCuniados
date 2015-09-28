@@ -8,3 +8,7 @@
 <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet"  media="screen">
 <script src="<c:url value="/resources/js/jquery-1.11.0.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.js" />"></script>
+<script src="<c:url value="/resources/calendar/moment.js" />"></script>
+<script src="<c:url value="/resources/calendar/moment_locale_es.js" />"></script>
+<script src="<c:url value="/resources/calendar/bootstrap-datetimepicker.min.js" />"></script>
+<link href="<c:url value="/resources/calendar/bootstrap-datetimepicker.min.css" />" rel="stylesheet"  media="screen">
