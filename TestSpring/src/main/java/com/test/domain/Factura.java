@@ -3,7 +3,6 @@ package com.test.domain;
 // default package
 // Generated 30-jul-2015 14:50:51 by Hibernate Tools 3.4.0.CR1
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,7 +24,7 @@ public class Factura{
 	private String id_tipoFactura;
 	private int id_Cliente;
 	private boolean activo;
-	private Date fecha;
+	private String fecha;
 	private float monto;	
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "factura", cascade = CascadeType.ALL)
@@ -34,7 +33,7 @@ public class Factura{
 	public Factura() {
 	}
 
-	public Factura(String id_tipoFactura, int id_Cliente, boolean activo,Date fecha, float monto) {
+	public Factura(String id_tipoFactura, int id_Cliente, boolean activo,String fecha, float monto) {
 		this.id_tipoFactura = id_tipoFactura;
 		this.id_Cliente = id_Cliente;
 		this.activo = activo;
@@ -82,11 +81,11 @@ public class Factura{
 		this.activo = activo;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return this.fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 

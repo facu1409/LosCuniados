@@ -16,7 +16,7 @@ public class Cliente {
 	private int id;	
 	
 	@Column(name="dniCuit")
-	private int dniCuit;	
+	private String dniCuit;	
 	
 	@Column(name="nombre")
 	private String nombre;
@@ -31,7 +31,7 @@ public class Cliente {
 	private String domicilio;
 	
 	@Column(name="telefono")
-	private int telefono;	
+	private String telefono;	
 
 	@Column(name="mail")
 	private String email;	
@@ -55,11 +55,11 @@ public class Cliente {
 		this.domicilio = domicilio;
 	}
 
-	public int getDniCuit() {
+	public String getDniCuit() {
 		return dniCuit;
 	}
 
-	public void setDniCuit(int dniCuit) {
+	public void setDniCuit(String dniCuit) {
 		this.dniCuit = dniCuit;
 	}
 
@@ -79,11 +79,11 @@ public class Cliente {
 		this.apellido = apellido;
 	}
 
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 

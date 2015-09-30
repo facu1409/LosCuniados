@@ -19,12 +19,12 @@ USE `loscuniados`;
 # Dumping structure for table loscuniados.cliente
 CREATE TABLE IF NOT EXISTS `cliente` (
   `id` int(8) unsigned NOT NULL AUTO_INCREMENT,  
-  `dniCuit` int(11) unsigned NOT NULL DEFAULT '0',
+  `dniCuit` varchar(30) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `nombre` varchar(30) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `apellido` varchar(30) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `fechaNacimiento` varchar(30) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',  
   `domicilio` varchar(50) COLLATE latin1_spanish_ci NOT NULL DEFAULT '', 
-  `telefono` int(18) unsigned NOT NULL DEFAULT '0',
+  `telefono` varchar(30) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `mail` varchar(40) COLLATE latin1_spanish_ci DEFAULT '', 
   `activo` bit NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `factura` (
   `id_tipoFactura` int(8) NOT NULL DEFAULT '0',
   `id_Cliente` int(8) NOT NULL DEFAULT '0',
   `activo` bit NOT NULL DEFAULT 1,
-  `fecha` date NOT NULL,
+  `fecha` varchar(30) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `monto` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `lineafactura` (
   `cantidad` int(8) NOT NULL DEFAULT '0',
   `precio_unitario` float NOT NULL DEFAULT '0',
   `id_factura` int(8) NOT NULL DEFAULT '0',
-  `total` int(6) NOT NULL DEFAULT '0',
+  `total` float NOT NULL DEFAULT '0',
   
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `pago` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `id_cliente` int(8) NOT NULL DEFAULT '0',
   `id_tipoDePago` int(8) NOT NULL DEFAULT '0',
-  `fecha` date NOT NULL,
+  `fecha` varchar(30) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `monto` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -175,10 +175,10 @@ ADD CONSTRAINT `fk_id_proveedor`
 # Dumping structure for table loscuniados.proveedor
 CREATE TABLE IF NOT EXISTS `proveedor` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
-  `cuit` int(11) NOT NULL DEFAULT '0',
+  `cuit` varchar(15) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `nombre` varchar(40) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `apellido` varchar(40) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
-  `telefono` int(20) NOT NULL DEFAULT '0',
+  `telefono` varchar(20) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `mail` varchar(50) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `domicilio` varchar(50) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `activo` bit NOT NULL DEFAULT 1,

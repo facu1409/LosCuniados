@@ -12,3 +12,6 @@
 <script src="<c:url value="/resources/calendar/moment_locale_es.js" />"></script>
 <script src="<c:url value="/resources/calendar/bootstrap-datetimepicker.min.js" />"></script>
 <link href="<c:url value="/resources/calendar/bootstrap-datetimepicker.min.css" />" rel="stylesheet"  media="screen">
+<script src="<c:url value="/resources/js/jquery.validate.min.js" />"></script>
+<script src="<c:url value="/resources/js/additional-methods.min.js" />"></script>
+<script src="<c:url value="/resources/js/messages_es_AR.min.js" />"></script>

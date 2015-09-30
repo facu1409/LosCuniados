@@ -21,7 +21,7 @@ public class Proveedor {
 	private int id;
 
 	@Column(name = "cuit")
-	private int cuit;
+	private String cuit;
 
 	@Column(name = "nombre")
 	private String nombre;
@@ -33,7 +33,7 @@ public class Proveedor {
 	private String domicilio;
 
 	@Column(name = "telefono")
-	private int telefono;
+	private String telefono;
 
 	@Column(name = "mail")
 	private String mail;
@@ -61,11 +61,11 @@ public class Proveedor {
 		this.domicilio = domicilio;
 	}
 
-	public int getCuit() {
+	public String getCuit() {
 		return cuit;
 	}
 
-	public void setCuit(int cuit) {
+	public void setCuit(String cuit) {
 		this.cuit = cuit;
 	}
 
@@ -85,11 +85,11 @@ public class Proveedor {
 		this.apellido = apellido;
 	}
 
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 

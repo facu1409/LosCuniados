@@ -17,6 +17,43 @@
                     format: 'DD/MM/YYYY'
                 });
             });
+ 
+ $(document).ready(function () {
+
+	    $('#clienteForm').validate({
+	        rules: {
+	        	dniCuit: {
+	                minlength: 12,
+	                required: true
+	            },
+	            nombre: {
+	                minlength: 2,
+	                required: true
+	            },
+	            apellido: {
+	                minlength: 2,
+	                required: true
+	            },
+	            email: {
+	                required: true,
+	                email: true
+	            },
+	            message: {
+	                minlength: 2,
+	                required: true
+	            }
+	        },
+	        highlight: function (element) {
+	            $(element).closest('.control-group').removeClass('success').addClass('error');
+	        },
+	        success: function (element) {
+	            element.text('OK!').addClass('valid')
+	                .closest('.control-group').removeClass('error').addClass('success');
+	        }
+	    });
+
+	});
+ 
 </script>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
@@ -30,7 +67,7 @@
 						</h3>
 						<c:url var="addAction" value="/cliente/add" ></c:url>
 						<br />
-						<form:form class="form-inline" action="${addAction}" commandName="cliente">		
+						<form:form id="clienteForm" class="form-inline" action="${addAction}" commandName="cliente">		
 							<c:if test="${!empty cliente.nombre}">							
 								<div class="row">
 									<div class="col-md-4">
@@ -47,7 +84,7 @@
 								<div class="col-md-4">	
 									<div class="form-group">
 										<form:label class="control-label" for="dniCuit" path="dniCuit">DNI/CUIT:</form:label><br />
-										<form:input value="" class="form-control" id="dniCuit" path="dniCuit" />				
+										<form:input value="" class="form-control numerico" id="dniCuit" path="dniCuit" />				
 									</div>
 								</div>
 								<div class="col-md-4">	
@@ -68,7 +105,7 @@
 								<div class="col-md-4">	
 									<div class="form-group">
 										<form:label class="control-label" path="telefono">Celular:</form:label><br />
-										<form:input class="form-control"  path="telefono" />
+										<form:input class="form-control numerico"  path="telefono" />
 									</div>
 								</div>
 								<div class="col-md-4">

@@ -12,6 +12,10 @@
 <body>
 <script type="text/javascript">
 
+$(document).ready(function(){
+    $(".numerico").numeric();
+});
+
 //-->TABLA PRODUCTOS
     var i=1;
    $("#add_row").click(function(){
@@ -62,9 +66,9 @@ $(document).on("click",'#btn_agregarLinea', function(){
 	$("#linea_total").val(cant*precioUn);
 
 
-<%-- 													<td id="linea_precioUn"><c:out value="${lineaFactura.precioUnitario}" /></td> --%>
-<%-- 													<td id="linea_cant"><c:out value="${lineaFactura.cantidad}" /></td>			 --%>
-<%-- 													<td id="linea_total"><c:out value="${lineaFactura.total}" /></td> --%>
+<%-- 	<td id="linea_precioUn"><c:out value="${lineaFactura.precioUnitario}" /></td> --%>
+<%-- 	<td id="linea_cant"><c:out value="${lineaFactura.cantidad}" /></td>			 --%>
+<%-- 	<td id="linea_total"><c:out value="${lineaFactura.total}" /></td> --%>
 	
 	 $('#addr'+i).html("<td id='linea_idProd"+i'>"+ idProd +"</td><td><input name='name"+i
 			 +"' type='text' placeholder='Name' class='form-control input-md'  /> </td><td><input  name='mail"+i
