@@ -11,10 +11,16 @@
 	</head>
 <body>
 <script type="text/javascript">
-
-$(document).ready(function(){
-    $(".numerico").numeric();
+$(function () {
+    $('#datetimepicker2').datetimepicker({
+        locale: 'es',
+        format: 'DD/MM/YYYY'
+    });
 });
+
+/*$(document).ready(function(){
+    $(".numerico").numeric();
+});*/
 
 //-->TABLA PRODUCTOS
     var i=1;
@@ -28,15 +34,7 @@ $(document).ready(function(){
 		 }
 	 });
 
-
 //<--TABLA PRODUCTOS
-
-$(function () {
-    $('#datetimepicker2').datetimepicker({
-        locale: 'es',
-        format: 'DD/MM/YYYY'
-    });
-});
 
 $(document).on("click", "#btn_selectCliente", function(event){
 	var idCliente = $('input[name=radiosCliente]:checked').val();
@@ -70,10 +68,10 @@ $(document).on("click",'#btn_agregarLinea', function(){
 <%-- 	<td id="linea_cant"><c:out value="${lineaFactura.cantidad}" /></td>			 --%>
 <%-- 	<td id="linea_total"><c:out value="${lineaFactura.total}" /></td> --%>
 	
-	 $('#addr'+i).html("<td id='linea_idProd"+i'>"+ idProd +"</td><td><input name='name"+i
+	/* $('#addr'+i).html("<td id='linea_idProd"+i'>"+ idProd +"</td><td><input name='name"+i
 			 +"' type='text' placeholder='Name' class='form-control input-md'  /> </td><td><input  name='mail"+i
 			 +"' type='text' placeholder='Mail'  class='form-control input-md'></td><td><input  name='mobile"+i
-			 +"' type='text' placeholder='Mobile'  class='form-control input-md'></td>");
+			 +"' type='text' placeholder='Mobile'  class='form-control input-md'></td>");*/
 
 	    $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
 	    i++; 
