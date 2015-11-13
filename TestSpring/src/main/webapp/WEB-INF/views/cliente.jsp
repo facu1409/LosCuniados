@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -20,11 +19,13 @@
  
  $(document).ready(function () {
 
-	    $('#clienteForm').validate({
+	    $('#clienteForm').validate({	    	
 	        rules: {
 	        	dniCuit: {
-	                minlength: 12,
-	                required: true
+	                minlength: 8,
+	                maxlength: 11,
+	                required: true,
+	                number: true
 	            },
 	            nombre: {
 	                minlength: 2,

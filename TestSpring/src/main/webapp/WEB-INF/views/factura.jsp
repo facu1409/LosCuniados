@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -55,26 +54,26 @@ $(document).on("click", "#btn_selectProd", function(event){
 	$('#modalProductos').modal('toggle');
 });
 
+var monto=0;
 $(document).on("click",'#btn_agregarLinea', function(){
-	$("#linea_idProd").val(idProd);
+		
+	//$("#linea_idProd").val(idProd);
 	var precioUn = $("#prod_precio").val();
 	var cant = $("#cant").val();
-	$("#linea_precioUn").val(precioUn);
-	$("#linea_cant").val(cant);
-	$("#linea_total").val(cant*precioUn);
-
-
-<%-- 	<td id="linea_precioUn"><c:out value="${lineaFactura.precioUnitario}" /></td> --%>
-<%-- 	<td id="linea_cant"><c:out value="${lineaFactura.cantidad}" /></td>			 --%>
-<%-- 	<td id="linea_total"><c:out value="${lineaFactura.total}" /></td> --%>
+	var total = cant*precioUn;
 	
-	/* $('#addr'+i).html("<td id='linea_idProd"+i'>"+ idProd +"</td><td><input name='name"+i
-			 +"' type='text' placeholder='Name' class='form-control input-md'  /> </td><td><input  name='mail"+i
-			 +"' type='text' placeholder='Mail'  class='form-control input-md'></td><td><input  name='mobile"+i
-			 +"' type='text' placeholder='Mobile'  class='form-control input-md'></td>");*/
-
-	    $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
-	    i++; 
+	var $row = $('<tr>'+
+		      '<td>'+idProd+'</td>'+
+		      '<td>'+precioUn+'</td>'+
+		      '<td>'+cant+'</td>'+
+		      '<td>'+total+'</td>'+
+		      '</tr>');   
+	
+	$('#tabla_factura> tbody:last').append($row);
+	
+	monto = monto + total;
+	$('#monto').val(monto);
+	
 });
 
 $(document).on("click",'#btn_borrarLinea', function(){
@@ -185,71 +184,74 @@ $(document).on("click",'#btn_borrarLinea', function(){
 							<br />
 <!-- 							<div class="row"> -->
 <!-- 								<div class="col-md-4">	 -->
- 								<div class="row clearfix">
-									<div class="col-md-12 column">										
-										<div class="form-group">
-										<form:label class="control-label" for="lineasFactura" path="lineasFactura">Productos:</form:label><br />
-											<table class="table table-bordered table-hover" id="tab_logic">
-												<thead>
-													<tr >
-														<th class="text-center">
-															#
-														</th>
-														<th class="text-center">
-															Producto
-														</th>
-														<th class="text-center">
-															Precio Unitario
-														</th>
-														<th class="text-center">
-															Cantidad
-														</th>
-														<th class="text-center">
-															Precio
-														</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr id='addr0'>
-														<td>
-														1
-														</td>
-														<td>
-														<input type="text" name='producto0'  placeholder='Producto' class="form-control"/>
-														</td>
-														<td>
-														<input type="text" name='precioUnit0' placeholder='Precio Unitario' class="form-control"/>
-														</td>
-														<td>
-														<input type="text" name='cant0' placeholder='Cantidad' class="form-control"/>
-														</td>
-														<td>
-														<input type="text" name='precio0' placeholder='Precio' class="form-control"/>
-														</td>
-													</tr>
-								                    <tr id='addr1'></tr>
-												</tbody>
-											</table>
-											
-<!-- 										<div class="table-responsive"> -->
-<!-- 											<table class="table table-bordered table-hover">		 -->
-<!-- 												<tr class="active success"> -->
-<!-- 													<th>Producto</th>			 -->
-<!-- 													<th>Precio Unitario</th> -->
-<!-- 													<th>Cantidad</th> -->
-<!-- 													<th>Precio</th>																									 -->
-<!-- 												</tr>				 -->
-<%-- 											<c:forEach items="${factura.lineasFactura}" var="lineaFactura">		 --%>
-<!-- 												<tr>													 -->
-<%-- 													<td id="linea_idProd"><c:out value="${lineaFactura.idProducto}" /></td>				 --%>
-<%-- 													<td id="linea_precioUn"><c:out value="${lineaFactura.precioUnitario}" /></td> --%>
-<%-- 													<td id="linea_cant"><c:out value="${lineaFactura.cantidad}" /></td>			 --%>
-<%-- 													<td id="linea_total"><c:out value="${lineaFactura.total}" /></td> --%>
-<!-- 												</tr> -->
-<%-- 											</c:forEach> --%>
+<!--  								<div class="row clearfix"> -->
+<!-- 									<div class="col-md-12 column">										 -->
+<!-- 										<div class="form-group"> -->
+<%-- 										<form:label class="control-label" for="lineasFactura" path="lineasFactura">Productos:</form:label><br /> --%>
+<!-- 											<table class="table table-bordered table-hover" id="tab_logic"> -->
+<!-- 												<thead> -->
+<!-- 													<tr > -->
+<!-- 														<th class="text-center"> -->
+<!-- 															# -->
+<!-- 														</th> -->
+<!-- 														<th class="text-center"> -->
+<!-- 															Producto -->
+<!-- 														</th> -->
+<!-- 														<th class="text-center"> -->
+<!-- 															Precio Unitario -->
+<!-- 														</th> -->
+<!-- 														<th class="text-center"> -->
+<!-- 															Cantidad -->
+<!-- 														</th> -->
+<!-- 														<th class="text-center"> -->
+<!-- 															Precio -->
+<!-- 														</th> -->
+<!-- 													</tr> -->
+<!-- 												</thead> -->
+<!-- 												<tbody> -->
+<!-- 													<tr id='addr0'> -->
+<!-- 														<td> -->
+<!-- 														1 -->
+<!-- 														</td> -->
+<!-- 														<td> -->
+<!-- 														<input type="text" name='producto0'  placeholder='Producto' class="form-control"/> -->
+<!-- 														</td> -->
+<!-- 														<td> -->
+<!-- 														<input type="text" name='precioUnit0' placeholder='Precio Unitario' class="form-control"/> -->
+<!-- 														</td> -->
+<!-- 														<td> -->
+<!-- 														<input type="text" name='cant0' placeholder='Cantidad' class="form-control"/> -->
+<!-- 														</td> -->
+<!-- 														<td> -->
+<!-- 														<input type="text" name='precio0' placeholder='Precio' class="form-control"/> -->
+<!-- 														</td> -->
+<!-- 													</tr> -->
+<!-- 								                    <tr id='addr1'></tr> -->
+<!-- 												</tbody> -->
 <!-- 											</table> -->
-<!-- 										</div>			 -->
-									
+											
+										<div class="table-responsive">
+											<table id="tabla_factura" class="table table-bordered table-hover">
+											<thead>		
+												<tr class="active success">												
+													<th>Producto</th>			
+													<th>Precio Unitario</th>
+													<th>Cantidad</th>
+													<th>Precio</th>																									
+												</tr>
+											</thead>
+											<tbody>			
+												<c:forEach items="${factura.lineasFactura}" var="lineaFactura">		
+													<tr>													
+														<td id="linea_idProd"><c:out value="${lineaFactura.idProducto}" /></td>				
+														<td id="linea_precioUn"><c:out value="${lineaFactura.precioUnitario}" /></td>
+														<td id="linea_cant"><c:out value="${lineaFactura.cantidad}" /></td>			
+														<td id="linea_total"><c:out value="${lineaFactura.total}" /></td>
+													</tr>
+												</c:forEach>
+											</tbody>
+											</table>
+										</div>									
 									</div>
 								</div>								
 							</div>	
@@ -360,8 +362,8 @@ $(document).on("click",'#btn_borrarLinea', function(){
 						</form:form>	
 					</div>	
 				</div>
-			</div>
-		</div>
+<!-- 			</div> -->
+<!-- 		</div> -->
 	<br>
 		<div class="row">
 			<div class="col-md-12">
