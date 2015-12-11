@@ -9,13 +9,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 
-	@RequestMapping(value = { "/", "/index**" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView welcomePage() {
 
 		ModelAndView model = new ModelAndView();
 		model.addObject("title", "Spring Security Custom Login Form");
 		model.addObject("message", "This is welcome page!");
-		model.setViewName("login");
+		model.setViewName("index");
 		return model;
 
 	}

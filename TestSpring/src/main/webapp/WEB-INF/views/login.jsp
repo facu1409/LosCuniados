@@ -38,7 +38,7 @@
 <body onload='document.loginForm.username.focus();'>
 
 
-	<div align="center"><img src="<c:url value="../images/logotipo.png" />" width="250" height="250" ></div>
+	<div align="center"><img src="<c:url value="../resources/images/logotipo.png" />" width="250" height="250" ></div>
 
 	<div id="login-box">
 
