@@ -3,6 +3,7 @@
 <html>
 <head>
 <title>Login Page</title>
+
 <style>
 .error {
 	padding: 15px;
@@ -34,11 +35,12 @@
 	border: 1px solid #000;
 }
 </style>
+<jsp:include page="/WEB-INF/views/importLibrerias.jsp"></jsp:include>
 </head>
 <body onload='document.loginForm.username.focus();'>
 
 
-	<div align="center"><img src="<c:url value="../resources/images/logotipo.png" />" width="250" height="250" ></div>
+	<div align="center"><img src="<c:url value="../LosCunia/resources/images/logotipo.png" />" width="250" height="250" ></div>
 
 	<div id="login-box">
 
