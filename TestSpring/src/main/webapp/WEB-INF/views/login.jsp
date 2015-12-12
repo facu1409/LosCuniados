@@ -2,7 +2,7 @@
 <%@page session="true"%>
 <html>
 <head>
-<title>Login Page</title>
+<title>Página de Logueo</title>
 
 <style>
 .error {
@@ -44,7 +44,7 @@
 
 	<div id="login-box">
 
-		<h3>Login with Username and Password</h3>
+		<h3>Loguearte con usuario y contraseña</h3>
 
 		<c:if test="${not empty error}">
 			<div class="error">${error}</div>
