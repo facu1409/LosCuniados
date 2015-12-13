@@ -2,7 +2,7 @@
 <%@page session="true"%>
 <html>
 <head>
-<title>Página de Logueo</title>
+<title>Login</title>
 
 <style>
 .error {
@@ -26,25 +26,27 @@
 }
 
 #login-box {
-	width: 300px;
+	width: 350px;
 	padding: 20px;
 	margin: 100px auto;
-	background: #fff;
+	margin-top: 10px; 
+	background : #fff;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	border: 1px solid #000;
+	background: #fff;
 }
 </style>
-<jsp:include page="/WEB-INF/views/importLibrerias.jsp"></jsp:include>
 </head>
 <body onload='document.loginForm.username.focus();'>
 
-
-	<div align="center"><img src="<c:url value="../LosCunia/resources/images/logotipo.png" />" width="250" height="250" ></div>
+	<div align="center">
+		<img src="<c:url value="../LosCunia/resources/images/logotipo.png" />" width="250" height="250" >
+	</div>
 
 	<div id="login-box">
 
-		<h3>Loguearte con usuario y contraseña</h3>
+		<h3>Ingresa tu usuario y contraseña</h3>
 
 		<c:if test="${not empty error}">
 			<div class="error">${error}</div>
@@ -58,16 +60,16 @@
 
 			<table>
 				<tr>
-					<td>User:</td>
+					<td>Usuario:</td>
 					<td><input type='text' name='username'></td>
 				</tr>
 				<tr>
-					<td>Password:</td>
+					<td>Contraseña:</td>
 					<td><input type='password' name='password' /></td>
 				</tr>
-				<tr>
-					<td colspan='2'><input name="submit" type="submit"
-						value="submit" /></td>
+				<tr align="right">
+					<td colspan='2'><input class="btn btn-primary" name="submit"
+						type="submit" value="Ingresar" /></td>
 				</tr>
 			</table>
 
@@ -76,6 +78,6 @@
 
 		</form>
 	</div>
-
+<jsp:include page="/WEB-INF/views/importLibrerias.jsp"></jsp:include>
 </body>
 </html>

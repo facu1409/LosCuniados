@@ -1,5 +1,6 @@
 package com.test.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.test.domain.Factura;
+import com.test.domain.LineaFactura;
 
 @Repository
 public class FacturaDaoImpl implements FacturaDao {
@@ -25,7 +27,12 @@ public class FacturaDaoImpl implements FacturaDao {
 	}
 
 	public void insertFactura(Factura factura) {
-		factura.setActivo(true);
+		factura.setActivo(true);		
+		List<LineaFactura> facturaList = factura.getLineasFactura();
+		for (LineaFactura linea : facturaList) {
+			linea.setFactura(factura);			
+		}
+		factura.setLineasFactura(facturaList);
 		getCurrentSession().save(factura);
 	}
 

@@ -31,8 +31,8 @@ public class LineaFacturaDaoImpl implements LineaFacturaDao {
 	public void updateLineaFactura(LineaFactura lineaFactura) {
 		LineaFactura lineaFacturaToUpdate = getLineaFacturaById(lineaFactura.getId());
 		lineaFacturaToUpdate.setCantidad(lineaFactura.getCantidad());
-		lineaFacturaToUpdate.setIdProducto(lineaFactura.getIdProducto());
-		lineaFacturaToUpdate.setPrecioUnitario(lineaFactura.getPrecioUnitario());		
+		lineaFacturaToUpdate.setId_producto(lineaFactura.getId_producto());
+		lineaFacturaToUpdate.setPrecio_unitario(lineaFactura.getPrecio_unitario());		
 		getCurrentSession().update(lineaFacturaToUpdate);
 	}
 

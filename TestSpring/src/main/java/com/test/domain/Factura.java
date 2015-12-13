@@ -3,7 +3,11 @@ package com.test.domain;
 // default package
 // Generated 30-jul-2015 14:50:51 by Hibernate Tools 3.4.0.CR1
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -28,7 +32,7 @@ public class Factura{
 	private float monto;	
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "factura", cascade = CascadeType.ALL)
-	private Set<LineaFactura> lineasFactura = new HashSet<LineaFactura>(0);
+	private List<LineaFactura> lineasFactura = new ArrayList<LineaFactura>();
 	
 	public Factura() {
 	}
@@ -41,16 +45,16 @@ public class Factura{
 		this.monto = monto;
 	}
 
-	public Set<LineaFactura> getLineasFactura() {
+	public int getId() {
+		return this.id;
+	}
+
+	public List<LineaFactura> getLineasFactura() {
 		return lineasFactura;
 	}
 
-	public void setLineasFactura(Set<LineaFactura> lineasFactura) {
+	public void setLineasFactura(List<LineaFactura> lineasFactura) {
 		this.lineasFactura = lineasFactura;
-	}
-
-	public int getId() {
-		return this.id;
 	}
 
 	public void setId(int id) {

@@ -13,10 +13,10 @@ public class LineaFactura {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	private int idProducto;
+	private int id_producto;
 	private int cantidad;
 	private double total;
-	private double precioUnitario;
+	private double precio_unitario;
 	@ManyToOne
 	@JoinColumn(name="id_factura")	
 	private Factura factura;
@@ -25,10 +25,10 @@ public class LineaFactura {
 	}
 
 	public LineaFactura(int idProducto, int cantidad, double total,double precioUnitario, Factura factura) {
-		this.idProducto = idProducto;
+		this.id_producto = idProducto;
 		this.cantidad = cantidad;
 		this.total = total;
-		this.precioUnitario = precioUnitario;
+		this.precio_unitario = precioUnitario;
 		this.setFactura(factura);
 	}
 
@@ -39,15 +39,7 @@ public class LineaFactura {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public int getIdProducto() {
-		return this.idProducto;
-	}
-
-	public void setIdProducto(int idProducto) {
-		this.idProducto = idProducto;
-	}
-
+	
 	public int getCantidad() {
 		return this.cantidad;
 	}
@@ -64,12 +56,12 @@ public class LineaFactura {
 		this.total = total;
 	}
 
-	public double getPrecioUnitario() {
-		return precioUnitario;
+	public double getPrecio_unitario() {
+		return precio_unitario;
 	}
 
-	public void setPrecioUnitario(double precioUnitario) {
-		this.precioUnitario = precioUnitario;
+	public void setPrecio_unitario(double precioUnitario) {
+		this.precio_unitario = precioUnitario;
 	}
 
 	public Factura getFactura() {
@@ -78,6 +70,14 @@ public class LineaFactura {
 
 	public void setFactura(Factura factura) {
 		this.factura = factura;
+	}
+
+	public int getId_producto() {
+		return id_producto;
+	}
+
+	public void setId_producto(int id_producto) {
+		this.id_producto = id_producto;
 	}
 
 }
