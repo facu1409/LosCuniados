@@ -3,10 +3,6 @@
 <html>
 <head>
 <title>Login</title>
-<html>
-<head>
-<title>Página de Login</title>
-
 <style>
 .error {
 	padding: 15px;
@@ -34,6 +30,11 @@
 
 <body onload='document.loginForm.username.focus();'>
 
+	<div align="center">
+		<img src="<c:url value="../LosCunia/resources/images/logotipo.png" />"
+			width="30%">
+	</div>
+
 	<div id="login-box">
 
 		<h3>Ingresar usuario y contraseña</h3>
@@ -57,16 +58,16 @@
 					<td>Contraseña:</td>
 					<td><input type='password' name='password' /></td>
 				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
 				<tr align="right">
-					<td colspan='2'><input class="btn btn-primary" name="submit"
+					<td colspan='2'><input class="btn btn-default" name="submit"
 						type="submit" value="Ingresar" /></td>
-
 				</tr>
 			</table>
-
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
-
 		</form>
 	</div>
 	<jsp:include page="/WEB-INF/views/importLibrerias.jsp"></jsp:include>

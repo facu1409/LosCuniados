@@ -211,19 +211,7 @@
 												<td><input readonly="readonly" name="lineasFactura[${status.index}].cantidad" value="${lineaFactura.cantidad}" /></td>
 												<td><input readonly="readonly" name="lineasFactura[${status.index}].total"	value="${lineaFactura.total}" /></td>
 											</tr>
-										</c:forEach>
-										<%-- 										<c:forEach items="${factura.lineasFactura}" var="lineaFactura" varStatus="status"> --%>
-										<!-- 											<tr> -->
-										<%-- 												<td id="linea_idProd"><c:out --%>
-										<%-- 														value="${lineaFactura.idProducto}" /></td> --%>
-										<%-- 												<td id="linea_precioUn"><c:out --%>
-										<%-- 														value="${lineaFactura.precioUnitario}" /></td> --%>
-										<%-- 												<td id="linea_cant"><c:out --%>
-										<%-- 														value="${lineaFactura.cantidad}" /></td> --%>
-										<%-- 												<td id="linea_total"><c:out --%>
-										<%-- 														value="${lineaFactura.total}" /></td> --%>
-										<!-- 											</tr> -->
-										<%-- 										</c:forEach> --%>
+										</c:forEach>									
 									</tbody>
 								</table>
 							</div>
