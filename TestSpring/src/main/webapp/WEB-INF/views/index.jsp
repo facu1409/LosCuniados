@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="page-header">
-					<h1>Titulo <small> Subtitulo</small></h1>
+					<h1>Los Cuñados  <small> Autoservicio</small></h1>
 				</div>
 			</div>
 		</div>			
