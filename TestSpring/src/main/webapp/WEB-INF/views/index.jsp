@@ -9,15 +9,13 @@
 	<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">				
-				<div  align="center" class="page-header">
+			<div class="col-md-12">
+				<div align="center" class="page-header">
 					<h1>
-						<b>Sistema de Facturación</b>
+						<b>Autoservicio</b>
 					</h1>
 				</div>
 				<div align="center">
 					<img src="resources/images/logotipo.png" width="30%">
 				</div>
 			</div>
-		</div>
-	</div>
