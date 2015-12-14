@@ -45,7 +45,9 @@
                 <value>com.test.domain.Producto</value>
                 <value>com.test.domain.ProductoProveedor</value> 
                 <value>com.test.domain.Factura</value>
-                <value>com.test.domain.LineaFactura</value>         
+                <value>com.test.domain.LineaFactura</value>    
+                <value>com.test.domain.Compra</value>
+                <value>com.test.domain.LineaCompra</value>      
             </list>  
         </property> 
 		<property name="hibernateProperties">
@@ -70,7 +72,10 @@
 	<bean id="facturaService" class="com.test.services.FacturaServiceImpl"></bean>
 	<bean id="lineaFacturaDao" class="com.test.dao.LineaFacturaDaoImpl"></bean> 
 	<bean id="lineaFacturaService" class="com.test.services.LineaFacturaServiceImpl"></bean>
-	
+	<bean id="compraDao" class="com.test.dao.CompraDaoImpl"></bean> 
+	<bean id="compraService" class="com.test.services.CompraServiceImpl"></bean>
+	<bean id="lineaCompraDao" class="com.test.dao.LineaCompraDaoImpl"></bean> 
+	<bean id="lineaCompraService" class="com.test.services.LineaCompraServiceImpl"></bean>
 
 	<bean id="txManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">

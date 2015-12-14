@@ -3,6 +3,8 @@ package com.test.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,14 +16,18 @@ public class LineaCompra {
 	private int idProducto;
 	private int cantidad;
 	private float total;
+	@ManyToOne
+	@JoinColumn(name="id_compra")	
+	private Compra compra;
 
 	public LineaCompra() {
 	}
 
-	public LineaCompra(int idProducto, int cantidad, float total) {
+	public LineaCompra(int idProducto, int cantidad, float total, Compra compra) {
 		this.idProducto = idProducto;
 		this.cantidad = cantidad;
 		this.total = total;
+		this.compra = compra;
 	}
 
 	public Integer getId() {
@@ -46,6 +52,14 @@ public class LineaCompra {
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+	
+	public Compra getCompra() {
+		return compra;
+	}
+
+	public void setCompra(Compra compra) {
+		this.compra = compra;
 	}
 
 	public float getTotal() {

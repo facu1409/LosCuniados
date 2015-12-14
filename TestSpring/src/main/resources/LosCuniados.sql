@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `compra` (
   `id_proveedor` int(8) NOT NULL DEFAULT '0',
   `fecha` date NOT NULL,
   `monto` float NOT NULL DEFAULT '0',
+  `activo` bit NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 

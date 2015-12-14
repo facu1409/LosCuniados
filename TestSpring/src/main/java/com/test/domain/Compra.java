@@ -1,13 +1,19 @@
 package com.test.domain;
 
+import java.util.ArrayList;
+
 // default package
 // Generated 30-jul-2015 14:50:51 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,17 +22,38 @@ public class Compra {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	private int idProveedor;
+	private int id_proveedor;
 	private Date fecha;
 	private float monto;
+	private boolean activo;
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "compra", cascade = CascadeType.ALL)
+	private List<LineaCompra> lineasCompra = new ArrayList<LineaCompra>();
+	
 	public Compra() {
 	}
 
-	public Compra(int idProveedor, Date fecha, float monto) {
-		this.idProveedor = idProveedor;
+	public Compra(int idProveedor, Date fecha, float monto, boolean activo) {
+		this.id_proveedor = idProveedor;
 		this.fecha = fecha;
 		this.monto = monto;
+		this.activo = activo;
+	}
+	
+	public List<LineaCompra> getLineasCompra() {
+		return lineasCompra;
+	}
+
+	public void setLineasCompra(List<LineaCompra> lineasCompra) {
+		this.lineasCompra = lineasCompra;
+	}
+	
+	public boolean isActivo() {
+		return this.activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
 	public Integer getId() {
@@ -38,11 +65,11 @@ public class Compra {
 	}
 
 	public int getIdProveedor() {
-		return this.idProveedor;
+		return this.id_proveedor;
 	}
 
 	public void setIdProveedor(int idProveedor) {
-		this.idProveedor = idProveedor;
+		this.id_proveedor = idProveedor;
 	}
 
 	public Date getFecha() {
