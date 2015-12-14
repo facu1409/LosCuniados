@@ -33,6 +33,7 @@ public class ProductoDaoImpl implements ProductoDao {
 	public void updateProducto(Producto producto) {
 		Producto ProductoToUpdate = getProductoById(producto.getId());
 		ProductoToUpdate.setNombre(producto.getNombre());
+		ProductoToUpdate.setDetalle(producto.getDetalle());
 		ProductoToUpdate.setStock(producto.getStock());
 		getCurrentSession().update(ProductoToUpdate);
 	}

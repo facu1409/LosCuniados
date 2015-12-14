@@ -48,12 +48,6 @@
 										<form:input class="form-control"  path="nombre" />
 									</div>
 								</div>
-								<div class="col-md-4">	
-									<div class="form-group">
-										<form:label class="control-label" path="apellido">Apellido:</form:label><br />
-										<form:input class="form-control"  path="apellido" />
-									</div>						
-								</div>
 							</div>
 							<br />
 							<div class="row">
@@ -108,7 +102,6 @@
 								<tr class="active success">
 									<th>Cuit</th>			
 									<th>Nombre</th>
-									<th>Apellido</th>
 									<th>Telefono</th>
 									<th>Mail</th>
 									<th>Domicilio</th>									
@@ -118,7 +111,6 @@
 								<tr>		
 									<td><c:out value="${proveedor.cuit}" /></td>				
 									<td><c:out value="${proveedor.nombre}" /></td>
-									<td><c:out value="${proveedor.apellido}" /></td>
 									<td><c:out value="${proveedor.telefono}" /></td>
 									<td><c:out value="${proveedor.mail}" /></td>				
 									<td><c:out value="${proveedor.domicilio}" /></td>																		

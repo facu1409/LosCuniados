@@ -137,6 +137,7 @@ CREATE TABLE IF NOT EXISTS `pagofactura` (
 CREATE TABLE IF NOT EXISTS `producto` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
+  `detalle` varchar(256) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `stock` int(6) NOT NULL DEFAULT '0',
   `activo` bit NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
@@ -178,7 +179,6 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `cuit` varchar(15) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `nombre` varchar(40) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
-  `apellido` varchar(40) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `telefono` varchar(20) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `mail` varchar(50) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `domicilio` varchar(50) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',

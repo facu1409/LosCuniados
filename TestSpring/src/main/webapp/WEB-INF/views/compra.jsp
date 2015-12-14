@@ -40,12 +40,12 @@
 
 		$(document).on("click", "#btn_selectProveedor", function(event) {
 			var idProveedor = $('input[name=radiosProveedor]:checked').val();
-			$('#id_proveedor').val(idProveedor);
+			$('#idProveedor').val(idProveedor);
 			var nombre = $('#nombre_' + idProveedor).html();
 			var apellido = $('#apellido_' + idProveedor).html();
 			var nombre_apellido = nombre + ' ' + apellido;
 			$('#nombre_proveedor').val(nombre_apellido);
-			$('#modalProveedors').modal('toggle');
+			$('#modalProveedores').modal('toggle');
 		});
 
 		var idProd;
@@ -119,24 +119,25 @@
 										</div>
 									</div>
 								</div>
-<!-- 								<div class="col-md-3"> -->
-<!-- 									<div class="form-group"> -->
-<%-- 										<form:input id="id_proveedor" type="hidden" path="id_proveedor" /> --%>
-<!-- 										<label class="control-label">Proveedor:</label><br /> -->
-<!-- 										<div class="input-group"> -->
-<!-- 											<input type="text" id="nombre_proveedor" class="form-control" -->
-<!-- 												placeholder="Buscar..."> <span -->
-<!-- 												class="input-group-btn"> -->
-<!-- 												<button class="btn btn-default" type="button" -->
-<!-- 													data-toggle="modal" data-target="#modalProveedors"> -->
-<!-- 													&nbsp;<span class="glyphicon glyphicon-search" -->
-<!-- 														aria-hidden="true"></span>&nbsp; -->
-<!-- 												</button> -->
-<!-- 											</span> -->
-<!-- 										</div> -->
-<!-- 										/input-group -->
-<!-- 									</div> -->
-<!-- 								</div> -->
+ 								<div class="col-md-3"> 
+ 									<div class="form-group"> 
+ 										<form:input id="idProveedor" type="hidden" path="idProveedor" />
+ 										<label class="control-label">Proveedor:</label><br />
+ 										<div class="input-group">
+ 											<input type="text" id="nombre_proveedor" class="form-control"
+ 												placeholder="Buscar..."> 
+ 												<span
+ 												class="input-group-btn">
+ 												<button class="btn btn-default" type="button"
+ 													data-toggle="modal" data-target="#modalProveedores">
+ 													&nbsp;<span class="glyphicon glyphicon-search"
+ 														aria-hidden="true"></span>&nbsp; 
+ 												</button>
+ 												</span>
+ 										</div>
+										<!-- /input-group  -->
+									</div>
+								</div> 
 							</div>
 							<br />
 							<div class="row">
@@ -206,7 +207,7 @@
 			</div>
 			</form:form>
 			<!------------ Modal Seleccion Proveedores ------------------------------------------------------------------->
-			<div class="modal fade" id="modalProveedors">
+			<div class="modal fade" id="modalProveedores">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -214,30 +215,27 @@
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							<h4 class="modal-title">Proveedors</h4>
+							<h4 class="modal-title">Proveedores</h4>
 						</div>
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
 									<div class="panel panel-default">
-										<c:if test="${!empty listProveedors}">
+										<c:if test="${!empty listProveedores}">
 											<div class="table-responsive">
 												<table class="table table-bordered table-hover">
 													<tr class="active success">
 														<th width="30px"></th>
-														<th>DNI/CUIT</th>
+														<th>CUIT</th>
 														<th>Nombre</th>
-														<th>Apellido</th>
 													</tr>
-													<c:forEach items="${listProveedors}" var="proveedor">
+													<c:forEach items="${listProveedores}" var="proveedor">
 														<tr>
 															<td><input type="radio" name="radiosProveedor"
 																id="${proveedor.id}" value="${proveedor.id}" /></td>
-															<td><c:out value="${proveedor.dniCuit}" /></td>
+															<td><c:out value="${proveedor.cuit}" /></td>
 															<td id="nombre_${proveedor.id}"><c:out
 																	value="${proveedor.nombre}" /></td>
-															<td id="apellido_${proveedor.id}"><c:out
-																	value="${proveedor.apellido}" /></td>
 														</tr>
 													</c:forEach>
 												</table>

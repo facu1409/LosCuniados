@@ -33,7 +33,6 @@ public class ProveedorDaoImpl implements ProveedorDao {
 		Proveedor proveedorToUpdate = getProveedorById(proveedor.getId());
 		proveedorToUpdate.setCuit(proveedor.getCuit());
 		proveedorToUpdate.setNombre(proveedor.getNombre());
-		proveedorToUpdate.setApellido(proveedor.getApellido());
 		proveedorToUpdate.setTelefono(proveedor.getTelefono());
 		proveedorToUpdate.setMail(proveedor.getMail());
 		proveedorToUpdate.setDomicilio(proveedor.getDomicilio());

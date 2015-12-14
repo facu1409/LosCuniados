@@ -20,6 +20,7 @@ public class Producto {
 	@Column(name = "id")
 	private int id;
 	private String nombre;
+	private String detalle;
 	private int stock;
 	private boolean activo;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.producto", cascade = CascadeType.ALL)
@@ -39,6 +40,14 @@ public class Producto {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public String getDetalle() {
+		return detalle;
+	}
+
+	public void setDetalle(String detalle) {
+		this.detalle = detalle;
 	}
 
 	public int getStock() {

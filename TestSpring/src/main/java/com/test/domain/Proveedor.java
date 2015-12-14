@@ -26,9 +26,6 @@ public class Proveedor {
 	@Column(name = "nombre")
 	private String nombre;
 
-	@Column(name = "apellido")
-	private String apellido;
-
 	@Column(name = "domicilio")
 	private String domicilio;
 
@@ -75,14 +72,6 @@ public class Proveedor {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getApellido() {
-		return apellido;
-	}
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
 	}
 
 	public String getTelefono() {

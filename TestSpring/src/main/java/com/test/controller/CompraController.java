@@ -28,7 +28,7 @@ public class CompraController extends MultiActionController {
 	public String listCompras(Model model) {
 		model.addAttribute("compra", new Compra());
 		model.addAttribute("listCompras", this.compraService.getList());
-		model.addAttribute("listProveedors", this.proveedorService.getList());
+		model.addAttribute("listProveedores", this.proveedorService.getList());
 		model.addAttribute("listProductos", this.productoService.getList());
 		return "compra";
 	}		

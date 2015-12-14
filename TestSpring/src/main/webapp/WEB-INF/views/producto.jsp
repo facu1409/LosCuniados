@@ -44,10 +44,11 @@
 								</div>	
 								<div class="col-md-4">	
 									<div class="form-group">
-										<form:label class="control-label" for="stock" path="stock">Stock:</form:label><br />
-										<form:input class="form-control" id="stock" path="stock" />				
+										<form:label class="control-label" path="detalle">Detalle:</form:label><br />
+										<form:input style="width:730px" class="form-control"  path="detalle" />
 									</div>
 								</div>
+								
 								
 							</div>	
 							<br />
@@ -78,14 +79,14 @@
 							<table class="table table-bordered table-hover">		
 								<tr class="active success">
 									<th>Nombre</th>			
-									<th>Stock</th>
+									<th>Detalle</th>
 									<th>Acciones</th>
 																									
 								</tr>				
 							<c:forEach items="${listProductos}" var="producto">		
 								<tr>		
 									<td><c:out value="${producto.nombre}" /></td>				
-									<td><c:out value="${producto.stock}" /></td>																	
+									<td><c:out value="${producto.detalle}" /></td>																	
 									<td align="center">
 										<a style="padding: 5px;color:gray" href="<c:url value='/editProducto/${producto.id}' />"><span class="glyphicon glyphicon-edit"></span></a>
 										<a style="padding: 5px;color:gray;" href="<c:url value='/removeProducto/${producto.id}' />"><span class="glyphicon glyphicon-remove"></span></a>
