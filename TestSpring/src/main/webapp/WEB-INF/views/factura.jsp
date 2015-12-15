@@ -88,9 +88,10 @@
 		});
 
 		var idProd;
+		var descripcion;
 		$(document).on("click", "#btn_selectProd", function(event) {
 			idProd = $('input[name=radiosProducto]:checked').val();
-			var descripcion = $('#descripcion_' + idProd).html();
+			descripcion = $('#descripcion_' + idProd).html();
 			var stock = $('#stock_' + idProd).html();
 			$('#prod_desc').val(descripcion);
 			$('#modalProductos').modal('toggle');
@@ -123,6 +124,7 @@
 			
 			var $row = $('<tr id="linea_'+i+'">'
 					+ '<td><input style=" border: none;" readonly="readonly" name="lineasFactura['+i+'].id_producto" value="'+idProd+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" value="'+descripcion+'" /></td>'
 					+ '<td><input style=" border: none;" readonly="readonly" name="lineasFactura['+i+'].precio_unitario" value="'+precioUn+'" /></td>'
 					+ '<td><input style=" border: none;" readonly="readonly" name="lineasFactura['+i+'].cantidad" value="'+cant+'" /></td>'
 					+ '<td><input id="inputTotal_'+i+'" style=" border: none;" readonly="readonly" name="lineasFactura['+i+'].total" value="'+total+'" /></td>'
