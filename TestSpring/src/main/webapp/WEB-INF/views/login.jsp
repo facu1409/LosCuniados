@@ -27,7 +27,6 @@
 }
 </style>
 </head>
-
 <body onload='document.loginForm.username.focus();'>
 
 	<div align="center">
@@ -69,7 +68,6 @@
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
 		</form>
-	</div>
-	<jsp:include page="/WEB-INF/views/importLibrerias.jsp"></jsp:include>
+	</div>	
 </body>
 </html>

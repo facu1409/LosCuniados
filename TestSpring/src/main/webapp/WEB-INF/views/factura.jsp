@@ -17,9 +17,51 @@
 			});
 		});
 
-		/*$(document).ready(function(){
-		 $(".numerico").numeric();
-		 });*/
+		$(document).ready(function () {
+			
+			//Cargo fecha de hoy
+			var today = new Date();
+		    var dd = today.getDate();
+		    var mm = today.getMonth()+1; //January is 0!
+
+		    var yyyy = today.getFullYear();
+		    if(dd<10){
+		        dd='0'+dd
+		    } 
+		    if(mm<10){
+		        mm='0'+mm
+		    } 
+		    var today = dd+'/'+mm+'/'+yyyy;
+		    document.getElementById("fecha").value = today;
+		    
+		    //Validaciones
+		    $('#facturaForm').validate({	    	
+		        rules: {
+		        	fecha: {		               
+		        		required: true
+		            },
+		            nombre_cliente: {
+		                minlength: 2,
+		                required: true
+		            },
+		            prod_desc: {		               
+		                required: true
+		            },
+		            prod_precio: {
+		                required: true,
+		                number: true
+		            }
+		        },
+		        highlight: function (element) {
+		            $(element).closest('.control-group').removeClass('success').addClass('error');
+		        },
+		        success: function (element) {
+		            element.text('').addClass('valid')
+		                .closest('.control-group').removeClass('error').addClass('success');
+		        }
+		    });
+
+		});
 
 		//-->TABLA PRODUCTOS
 		var i = 1;
@@ -53,37 +95,48 @@
 			$('#prod_desc').val(descripcion);
 			$('#modalProductos').modal('toggle');
 		});
+		
+		//Eliminar Linea de Factura
+		var id_linea;		
+		$(document).on("click", ".claseLinea", function(event) {
+			id_linea = $(this).attr('id');	
+				
+			var totalLinea = $('#inputTotal_'+id_linea).val();
+			
+			var trLinea = $('#linea_'+id_linea);
+			
+			$(trLinea).remove();
+			
+			monto = $('#monto').val();			
+			monto = monto - totalLinea;	
+			$('#monto').val(monto);
+		});
 
+		//Eliminar Linea de Factura
 		var monto = 0;
 		var i = 0;
-		$(document).on("click", '#btn_agregarLinea', function() {
-
-			//$("#linea_idProd").val(idProd);
+		$(document).on("click",'#btn_agregarLinea', function() {
+							
 			var precioUn = $("#prod_precio").val();
 			var cant = $("#cant").val();
-			var total = cant * precioUn;	
+			var total = cant * precioUn;
 			
-			var $row = $('<tr>' +
-					 '<td><input readonly="readonly" name="lineasFactura['+i+'].id_producto" value="'+idProd+'" /></td>'
-					+'<td><input readonly="readonly" name="lineasFactura['+i+'].precio_unitario" value="'+precioUn+'" /></td>'
-					+'<td><input readonly="readonly" name="lineasFactura['+i+'].cantidad" value="'+cant+'" /></td>'
-					+'<td><input readonly="readonly" name="lineasFactura['+i+'].total" value="'+total+'" /></td>'
-			+'</tr>');
-
+			var $row = $('<tr id="linea_'+i+'">'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineasFactura['+i+'].id_producto" value="'+idProd+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineasFactura['+i+'].precio_unitario" value="'+precioUn+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineasFactura['+i+'].cantidad" value="'+cant+'" /></td>'
+					+ '<td><input id="inputTotal_'+i+'" style=" border: none;" readonly="readonly" name="lineasFactura['+i+'].total" value="'+total+'" /></td>'
+					+ '<td><a class="claseLinea" id="'+i+'" style="padding: 5px; color: gray;cursor: pointer;"><span class="glyphicon glyphicon-remove"></span></a></td>'
+					+ '</tr>');
+	
 			$('#tabla_factura> tbody:last').append($row);
-
+	
 			monto = monto + total;
 			$('#monto').val(monto);
 			i++;
-
+	
 		});
-
-		$(document).on("click", '#btn_borrarLinea', function() {
-			if (i > 1) {
-				$("#addr" + (i - 1)).html('');
-				i--;
-			}
-		});
+		
 	</script>
 
 	<jsp:include page="header.jsp"></jsp:include>
@@ -96,7 +149,9 @@
 						<h3 class="text-primary">Factura</h3>
 						<c:url var="addAction" value="/factura/add"></c:url>
 						<br />
-						<form:form id="facturaForm" class="form-inline"	action="${addAction}" commandName="factura" modelAttribute="factura">
+						<form:form id="facturaForm" class="form-inline"
+							action="${addAction}" commandName="factura"
+							modelAttribute="factura">
 							<c:if test="${factura.id > 0}">
 								<div class="row">
 									<div class="col-md-4">
@@ -146,7 +201,7 @@
 									<div class="form-group">
 										<form:label class="control-label" path="id_tipoFactura">Tipo de Factura</form:label>
 										<br />
-										<form:select class="form-control" path="id_tipoFactura">											
+										<form:select class="form-control" path="id_tipoFactura">
 											<form:option value="A" label="   A   " />
 											<form:option value="B" label="   B   " />
 											<form:option value="C" label="   C   " selected="selected" />
@@ -160,10 +215,13 @@
 									<div class="form-group">
 										<label class="control-label">Producto:</label><br />
 										<div class="input-group">
-											<input id="prod_desc" type="text" class="form-control"	placeholder="Buscar..."> <span	class="input-group-btn">
-												<button class="btn btn-default" type="button" data-toggle="modal" 
-													data-target="#modalProductos">&nbsp;<span class="glyphicon glyphicon-search"
-													aria-hidden="true"></span>&nbsp;
+											<input id="prod_desc" type="text" class="form-control"
+												placeholder="Buscar..."> <span
+												class="input-group-btn">
+												<button class="btn btn-default" type="button"
+													data-toggle="modal" data-target="#modalProductos">
+													&nbsp;<span class="glyphicon glyphicon-search"
+														aria-hidden="true"></span>&nbsp;
 												</button>
 											</span>
 										</div>
@@ -199,48 +257,59 @@
 											<th>Producto</th>
 											<th>Precio Unitario</th>
 											<th>Cantidad</th>
-											<th>Precio</th>
+											<th>Total</th>
+											<th> </th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${factura.lineasFactura}" var="lineaFactura"	varStatus="status">
+										<c:forEach items="${factura.lineasFactura}" var="lineaFactura"
+											varStatus="status">
 											<tr>
 												<td align="center">${status.count}</td>
-												<td><input readonly="readonly"	name="lineasFactura[${status.index}].id_producto" value="${lineaFactura.idProducto}" /></td>
-												<td><input readonly="readonly" name="lineasFactura[${status.index}].precio_unitario" value="${lineaFactura.precioUnitario}" /></td>
-												<td><input readonly="readonly" name="lineasFactura[${status.index}].cantidad" value="${lineaFactura.cantidad}" /></td>
-												<td><input readonly="readonly" name="lineasFactura[${status.index}].total"	value="${lineaFactura.total}" /></td>
+												<td><input  readonly="readonly"
+													name="lineasFactura[${status.index}].id_producto"
+													value="${lineaFactura.idProducto}" /></td>
+												<td><input readonly="readonly"
+													name="lineasFactura[${status.index}].precio_unitario"
+													value="${lineaFactura.precioUnitario}" /></td>
+												<td><input readonly="readonly"
+													name="lineasFactura[${status.index}].cantidad"
+													value="${lineaFactura.cantidad}" /></td>
+												<td><input readonly="readonly" id="inputTotal_${status.index}"
+													name="lineasFactura[${status.index}].total"
+													value="${lineaFactura.total}" /></td>
 											</tr>
-										</c:forEach>									
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
+							<br />
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<form:label class="control-label" for="monto" path="monto">Total:</form:label>
+										<br />
+										<form:input class="form-control" id="monto" path="monto"
+											readonly="true" />
+									</div>
+								</div>
+							</div>
+							<br />
+							<div class="row">
+								<div class="col-md-12">
+									<c:if test="${factura.id > 0}">
+										<input class="btn btn-primary" type="submit" value="Editar" />
+									</c:if>
+									<c:if test="${factura.id == 0}">
+										<input class="btn btn-success" type="submit" value="Agregar" />
+									</c:if>
+								</div>
+							</div>
+						</form:form>
 					</div>
+
 				</div>
 			</div>
-			<br />
-			<div class="row">
-				<div class="col-md-4">
-					<div class="form-group">
-						<form:label class="control-label" for="monto" path="monto">Total:</form:label>
-						<br />
-						<form:input class="form-control" id="monto" path="monto"
-							readonly="true" />
-					</div>
-				</div>
-			</div>
-			<br />
-			<div class="row">
-				<div class="col-md-12">
-					<c:if test="${factura.id > 0}">
-						<input class="btn btn-primary" type="submit" value="Editar" />
-					</c:if>
-					<c:if test="${factura.id == 0}">
-						<input class="btn btn-success" type="submit" value="Agregar" />
-					</c:if>
-				</div>
-			</div>
-			</form:form>
 			<!------------ Modal Seleccion Clientes ------------------------------------------------------------------->
 			<div class="modal fade" id="modalClientes">
 				<div class="modal-dialog">
@@ -346,46 +415,47 @@
 				<!-- /.modal-dialog -->
 			</div>
 			<!-- /.modal -->
-			<%-- 						</form:form>	 --%>
 		</div>
-	</div>
-	<!-- 			</div> -->
-	<!-- 		</div> -->
-	<br>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<h3 class="text-primary">Listado Facturas</h3>
-					<br />
-					<c:if test="${!empty listFacturas}">
-						<div class="table-responsive">
-							<table class="table table-bordered table-hover">
-								<tr class="active success">
-									<th>Fecha</th>
-									<th>Monto</th>
-									<th>Acciones</th>
-								</tr>
-								<c:forEach items="${listFacturas}" var="factura">
-									<tr>
-										<td><c:out value="${factura.fecha}" /></td>
-										<td><c:out value="${factura.monto}" /></td>
-										<td align="center"><a style="padding: 5px; color: gray"
-											href="<c:url value='/editFactura/${factura.id}' />"><span
-												class="glyphicon glyphicon-edit"></span></a> <a
-											style="padding: 5px; color: gray;"
-											href="<c:url value='/removeFactura/${factura.id}' />"><span
-												class="glyphicon glyphicon-remove"></span></a></td>
+		<br>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h3 class="text-primary">Listado Facturas</h3>
+						<br />
+						<c:if test="${!empty listFacturas}">
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<tr class="active success">
+										<th>Fecha</th>
+										<th>Monto</th>
+										<th>Cliente</th>
+										<th>Tipo de Factura</th>
+										<th></th>
 									</tr>
-								</c:forEach>
-							</table>
-						</div>
-					</c:if>
+									<c:forEach items="${listFacturas}" var="factura">
+										<tr>
+											<td><c:out value="${factura.fecha}" /></td>
+											<td><c:out value="${factura.monto}" /></td>
+											<td><c:out value="${factura.id_Cliente}" /></td>
+											<td><c:out value="${factura.id_tipoFactura}" /></td>
+											<td align="center">
+												<!-- 										<a style="padding: 5px; color: gray" --> <%-- 											href="<c:url value='/editFactura/${factura.id}' />"><span  --%>
+												<!-- 											class="glyphicon glyphicon-edit"></span></a>  -->
+												<a style="padding: 5px; color: gray;cursor: pointer;"
+												href="<c:url value='/removeFactura/${factura.id}' />"><span
+													class="glyphicon glyphicon-remove"></span></a>
+											</td>
+										</tr>
+									</c:forEach>
+								</table>
+							</div>
+						</c:if>
+					</div>
 				</div>
 			</div>
 		</div>
+		<br>
 	</div>
-	<br>
-	<!-- 	</div> -->
 </body>
 </html>
