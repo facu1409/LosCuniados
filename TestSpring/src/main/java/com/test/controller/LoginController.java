@@ -53,7 +53,7 @@ public class LoginController {
 		}
 
 		if (logout != null) {
-			model.addObject("msg", "Te has logueado correctamente!");
+			model.addObject("msg", "Te has deslogueado correctamente!");
 		}
 		model.setViewName("login");
 

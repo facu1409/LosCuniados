@@ -6,6 +6,9 @@
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
     
     <http pattern="/login" security="none"/>
+    <http pattern="/resources/images/**" security="none"/>
+    <http pattern="/resources/css/**" security="none"/>
+    <http pattern="/resources/js/**" security="none"/>
        
     <http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
