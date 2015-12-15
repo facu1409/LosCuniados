@@ -36,12 +36,12 @@
 		    document.getElementById("fecha").value = today;
 		    
 		    //Validaciones
-		    $('#facturaForm').validate({	    	
+		    $('#compraForm').validate({	    	
 		        rules: {
 		        	fecha: {		               
 		        		required: true
 		            },
-		            nombre_cliente: {
+		            nombre_proveedor: {
 		                minlength: 2,
 		                required: true
 		            },
@@ -78,22 +78,23 @@
 		});
 
 		//<--TABLA PRODUCTOS
-
+		
+			
 		$(document).on("click", "#btn_selectProveedor", function(event) {
 			var idProveedor = $('input[name=radiosProveedor]:checked').val();
 			$('#idProveedor').val(idProveedor);
-			var nombre = $('#nombre_' + idProveedor).html();
-			var apellido = $('#apellido_' + idProveedor).html();
-			var nombre_apellido = nombre + ' ' + apellido;
-			$('#nombre_proveedor').val(nombre_apellido);
+			var nombrep = $('#nombreP_' + idProveedor).html();
+ 			$('#nombre_proveedor').val(nombrep);
 			$('#modalProveedores').modal('toggle');
 		});
 
+		var stock;
 		var idProd;
 		$(document).on("click", "#btn_selectProd", function(event) {
 			idProd = $('input[name=radiosProducto]:checked').val();
+			nombre = $('#nombre_' + idProd).html();
 			var descripcion = $('#descripcion_' + idProd).html();
-			var stock = $('#stock_' + idProd).html();
+			stock = $('#stock_' + idProd).html();
 			$('#prod_desc').val(descripcion);
 			$('#modalProductos').modal('toggle');
 		});
@@ -120,13 +121,14 @@
 		var monto = 0;
 		var i = 0;
 		$(document).on("click",'#btn_agregarLinea', function() {
-							
+			
+			var nombreProd = $('#nombre_' + idProd).html();
 			var precioUn = $("#prod_precio").val();
 			var cant = $("#cant").val();
 			var total = cant * precioUn;
 			
 			var $row = $('<tr id="linea_'+i+'">'
-					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].id_producto" value="'+idProd+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].prod_desc" value="'+descripcion+'" /></td>'
 					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].cantidad" value="'+cant+'" /></td>'
 					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].precio_unitario" value="'+precioUn+'" /></td>'
 					+ '<td><input id="inputTotal_'+i+'" style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].total" value="'+total+'" /></td>'
