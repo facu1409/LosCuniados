@@ -9,9 +9,7 @@
 <jsp:include page="importLibrerias.jsp"></jsp:include>
 </head>
 <body>
-	
-	
-	
+
 	<script>
 		$(function() {
 			$('#datetimepicker2').datetimepicker({
@@ -19,10 +17,53 @@
 				format : 'DD/MM/YYYY'
 			});
 		});
+			
+		
+			$(document).ready(function () {
+			//Cargo fecha de hoy
+			var today = new Date();
+		    var dd = today.getDate();
+		    var mm = today.getMonth()+1; //January is 0!
 
-		/*$(document).ready(function(){
-		 $(".numerico").numeric();
-		 });*/
+		    var yyyy = today.getFullYear();
+		    if(dd<10){
+		        dd='0'+dd
+		    } 
+		    if(mm<10){
+		        mm='0'+mm
+		    } 
+		    var today = dd+'/'+mm+'/'+yyyy;
+		    document.getElementById("fecha").value = today;
+		    
+		    //Validaciones
+		    $('#facturaForm').validate({	    	
+		        rules: {
+		        	fecha: {		               
+		        		required: true
+		            },
+		            nombre_cliente: {
+		                minlength: 2,
+		                required: true
+		            },
+		            prod_desc: {		               
+		                required: true
+		            },
+		            prod_precio: {
+		                required: true,
+		                number: true
+		            }
+		        },
+		        highlight: function (element) {
+		            $(element).closest('.control-group').removeClass('success').addClass('error');
+		        },
+		        success: function (element) {
+		            element.text('').addClass('valid')
+		                .closest('.control-group').removeClass('error').addClass('success');
+		        }
+		    });
+
+		});
+		
 
 		//-->TABLA PRODUCTOS
 		var i = 1;
@@ -57,28 +98,50 @@
 			$('#modalProductos').modal('toggle');
 		});
 
+				
+		
+		//Eliminar Linea de Compra
+		var id_linea;		
+		$(document).on("click", ".claseLinea", function(event) {
+			id_linea = $(this).attr('id');	
+				
+			var totalLinea = $('#inputTotal_'+id_linea).val();
+			
+			var trLinea = $('#linea_'+id_linea);
+			
+			$(trLinea).remove();
+			
+			monto = $('#monto').val();			
+			monto = monto - totalLinea;	
+			$('#monto').val(monto);
+		});
+
+		//Agregar Linea de Compra
+		var monto = 0;
 		var i = 0;
-		$(document).on("click", '#btn_agregarLinea', function() {
-
-			//$("#linea_idProd").val(idProd);
-			var cant = $("#cant").val();	
+		$(document).on("click",'#btn_agregarLinea', function() {
+							
+			var precioUn = $("#prod_precio").val();
+			var cant = $("#cant").val();
+			var total = cant * precioUn;
 			
-			var $row = $('<tr>' +
-					 '<td><input readonly="readonly" name="lineasCompra['+i+'].id_producto" value="'+idProd+'" /></td>'
-					+'<td><input readonly="readonly" name="lineasCompra['+i+'].cantidad" value="'+cant+'" /></td>'
-			+'</tr>');
-
+			var $row = $('<tr id="linea_'+i+'">'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].id_producto" value="'+idProd+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].cantidad" value="'+cant+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].precio_unitario" value="'+precioUn+'" /></td>'
+					+ '<td><input id="inputTotal_'+i+'" style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].total" value="'+total+'" /></td>'
+					+ '<td><a class="claseLinea" id="'+i+'" style="padding: 5px; color: gray;cursor: pointer;"><span class="glyphicon glyphicon-remove"></span></a></td>'
+					+ '</tr>');
+	
 			$('#tabla_compra> tbody:last').append($row);
-			
+	
+			monto = monto + total;
+			$('#monto').val(monto);
 			i++;
+	
 		});
-
-		$(document).on("click", '#btn_borrarLinea', function() {
-			if (i > 1) {
-				$("#addr" + (i - 1)).html('');
-				i--;
-			}
-		});
+		
+				
 	</script>
 
 	<jsp:include page="header.jsp"></jsp:include>
@@ -162,6 +225,12 @@
 											type="number" name="quantity" min="1">
 									</div>
 								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label class="control-label">Precio:</label><br /> <input
+											id="prod_precio" type="text" class="form-control">
+									</div>
+								</div>
 								<div class="col-md-3" style="padding-top: 20px">
 									<div class="form-group">
 										<button type="button" class="btn btn-primary"
@@ -177,35 +246,59 @@
 										<tr class="active success">
 											<th>Producto</th>
 											<th>Cantidad</th>
+											<th>Precio</th>
+											<th>Total</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${compra.lineasCompra}" var="lineaCompra"	varStatus="status">
+										<c:forEach items="${compra.lineasCompra}" var="lineaCompra"
+											varStatus="status">
 											<tr>
 												<td align="center">${status.count}</td>
-												<td><input readonly="readonly"	name="lineasCompra[${status.index}].id_producto" value="${lineaCompra.idProducto}" /></td>
-												<td><input readonly="readonly" name="lineasCompra[${status.index}].cantidad" value="${lineaCompra.cantidad}" /></td>
+												<td><input  readonly="readonly"
+													name="lineasCompra[${status.index}].id_producto"
+													value="${lineaCompra.idProducto}" /></td>
+												<td><input readonly="readonly"
+													name="lineasCompra[${status.index}].precio_unitario"
+													value="${lineaCompra.precioUnitario}" /></td>
+												<td><input readonly="readonly"
+													name="lineasCompra[${status.index}].cantidad"
+													value="${lineaCompra.cantidad}" /></td>
+												<td><input readonly="readonly" id="inputTotal_${status.index}"
+													name="lineasCompra[${status.index}].total"
+													value="${lineaCompra.total}" /></td>
 											</tr>
-										</c:forEach>									
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
+							<br />
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<form:label class="control-label" for="monto" path="monto">Total:</form:label>
+										<br />
+										<form:input class="form-control" id="monto" path="monto"
+											readonly="true" />
+									</div>
+								</div>
+							</div>
+							<br />
+							<div class="row">
+								<div class="col-md-12">
+									<c:if test="${compra.id > 0}">
+										<input class="btn btn-primary" type="submit" value="Editar" />
+									</c:if>
+									<c:if test="${compra.id == 0}">
+										<input class="btn btn-success" type="submit" value="Agregar" />
+									</c:if>
+								</div>
+							</div>
+							</form:form>
 					</div>
-				</div>
-			</div>
-			<br />
-			<br />
-			<div class="row">
-				<div class="col-md-12">
-					<c:if test="${compra.id > 0}">
-						<input class="btn btn-primary" type="submit" value="Editar" />
-					</c:if>
-					<c:if test="${compra.id == 0}">
-						<input class="btn btn-success" type="submit" value="Agregar" />
-					</c:if>
-				</div>
-			</div>
-			</form:form>
+				</div> 
+ 			</div> 
+			
 			<!------------ Modal Seleccion Proveedores ------------------------------------------------------------------->
 			<div class="modal fade" id="modalProveedores">
 				<div class="modal-dialog">
@@ -313,6 +406,7 @@
 	</div>
 	<!-- 			</div> -->
 	<!-- 		</div> -->
+	
 	<br>
 	<div class="row">
 		<div class="col-md-12">

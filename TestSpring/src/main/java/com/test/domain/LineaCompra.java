@@ -19,6 +19,7 @@ public class LineaCompra {
 	@ManyToOne
 	@JoinColumn(name="id_compra")	
 	private Compra compra;
+	private double precio_unitario;
 
 	public LineaCompra() {
 	}
@@ -68,6 +69,14 @@ public class LineaCompra {
 
 	public void setTotal(float total) {
 		this.total = total;
+	}
+
+	public void setPrecio_unitario(double precioUnitario) {
+		this.precio_unitario = precioUnitario;
+	}
+
+	public double getPrecio_unitario() {
+		return precio_unitario;
 	}
 
 }
