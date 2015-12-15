@@ -83,18 +83,17 @@
 		$(document).on("click", "#btn_selectProveedor", function(event) {
 			var idProveedor = $('input[name=radiosProveedor]:checked').val();
 			$('#idProveedor').val(idProveedor);
-			var nombrep = $('#nombreP_' + idProveedor).html();
- 			$('#nombre_proveedor').val(nombrep);
+			var nombre = $('#nombre_' + idProveedor).html();
+ 			$('#nombre_proveedor').val(nombre);
 			$('#modalProveedores').modal('toggle');
 		});
 
 		var stock;
-		var idProd;
+		var descripcion;
 		$(document).on("click", "#btn_selectProd", function(event) {
-			idProd = $('input[name=radiosProducto]:checked').val();
-			nombre = $('#nombre_' + idProd).html();
-			var descripcion = $('#descripcion_' + idProd).html();
-			stock = $('#stock_' + idProd).html();
+			idProducto = $('input[name=radiosProducto]:checked').val();
+			descripcion = $('#descripcion_' + idProducto).html();
+			stock = $('#stock_' + idProducto).html();
 			$('#prod_desc').val(descripcion);
 			$('#modalProductos').modal('toggle');
 		});
@@ -122,16 +121,18 @@
 		var i = 0;
 		$(document).on("click",'#btn_agregarLinea', function() {
 			
-			var nombreProd = $('#nombre_' + idProd).html();
 			var precioUn = $("#prod_precio").val();
 			var cant = $("#cant").val();
 			var total = cant * precioUn;
+			stock = stock + cant;
 			
 			var $row = $('<tr id="linea_'+i+'">'
-					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].prod_desc" value="'+descripcion+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].idProducto" value="'+idProducto+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].descripcion" value="'+descripcion+'" /></td>'
 					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].cantidad" value="'+cant+'" /></td>'
 					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].precio_unitario" value="'+precioUn+'" /></td>'
 					+ '<td><input id="inputTotal_'+i+'" style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].total" value="'+total+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].stock" value="'+stock+'" /></td>'
 					+ '<td><a class="claseLinea" id="'+i+'" style="padding: 5px; color: gray;cursor: pointer;"><span class="glyphicon glyphicon-remove"></span></a></td>'
 					+ '</tr>');
 	
@@ -185,6 +186,7 @@
 									</div>
 								</div>
  								<div class="col-md-3"> 
+ 								
  									<div class="form-group"> 
  										<form:input id="idProveedor" type="hidden" path="idProveedor" />
  										<label class="control-label">Proveedor:</label><br />
@@ -204,15 +206,21 @@
 									</div>
 								</div> 
 							</div>
+							
 							<br />
+							
 							<div class="row">
 								<div class="col-md-3">
 									<div class="form-group">
+<%-- 									<form:input id="idProducto" type="hidden" path="idProducto" /> --%>
 										<label class="control-label">Producto:</label><br />
 										<div class="input-group">
-											<input id="prod_desc" type="text" class="form-control"	placeholder="Buscar..."> <span	class="input-group-btn">
+											<input id="prod_desc" type="text" class="form-control"	
+											placeholder="Buscar..."> 
+											<span	class="input-group-btn">
 												<button class="btn btn-default" type="button" data-toggle="modal" 
-													data-target="#modalProductos">&nbsp;<span class="glyphicon glyphicon-search"
+													data-target="#modalProductos">
+													&nbsp;<span class="glyphicon glyphicon-search"
 													aria-hidden="true"></span>&nbsp;
 												</button>
 											</span>
@@ -240,16 +248,20 @@
 									</div>
 								</div>
 							</div>
+							
 							<br />
+							
 							<div class="table-responsive">
 								<table id="tabla_compra"
 									class="table table-bordered table-hover">
 									<thead>
 										<tr class="active success">
+											<th>IdProducto</th>
 											<th>Producto</th>
 											<th>Cantidad</th>
 											<th>Precio</th>
 											<th>Total</th>
+											<th>Stock</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -260,6 +272,9 @@
 												<td><input  readonly="readonly"
 													name="lineasCompra[${status.index}].id_producto"
 													value="${lineaCompra.idProducto}" /></td>
+												<td><input  readonly="readonly"
+													name="lineasCompra[${status.index}].descripcion"
+													value="${lineaCompra.producto}" /></td>	
 												<td><input readonly="readonly"
 													name="lineasCompra[${status.index}].precio_unitario"
 													value="${lineaCompra.precioUnitario}" /></td>
@@ -269,6 +284,9 @@
 												<td><input readonly="readonly" id="inputTotal_${status.index}"
 													name="lineasCompra[${status.index}].total"
 													value="${lineaCompra.total}" /></td>
+												<td><input  readonly="readonly"
+													name="lineasCompra[${status.index}].stock"
+													value="${lineaCompra.stock}" /></td>	
 											</tr>
 										</c:forEach>
 									</tbody>
