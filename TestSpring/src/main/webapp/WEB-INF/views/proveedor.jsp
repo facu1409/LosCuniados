@@ -23,27 +23,36 @@
 	                number: true
 	            },
 	            nombre: {
-	                minlength: 2,
+	                minlength: 3,
 	                required: true
 	            },
 	            telefono: {
-	                minlength: 2,
+	            	number: true,
+	                minlength: 6,
 	                required: true
 	            },
 	            mail: {	                
 	                email: true
 	            },
 	            domicilio: {
-	                minlength: 2,
+	                minlength: 5,
 	                required: true
 	            }
 	        },
-	        highlight: function (element) {
-	            $(element).closest('.control-group').removeClass('success').addClass('error');
+	        highlight: function(element) {
+	            $(element).closest('.form-group').addClass('has-error');
 	        },
-	        success: function (element) {
-	            element.text('').addClass('valid')
-	                .closest('.control-group').removeClass('error').addClass('success');
+	        unhighlight: function(element) {
+	            $(element).closest('.form-group').removeClass('has-error');
+	        },
+	        errorElement: 'span',
+	        errorClass: 'help-block',
+	        errorPlacement: function(error, element) {
+	            if(element.parent('.input-group').length) {
+	                error.insertAfter(element.parent());
+	            } else {
+	                error.insertAfter(element);
+	            }
 	        }
 	    });
 
@@ -52,17 +61,16 @@
 </script>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
-	<br />
+	
 		<div class="row">
 			<div class="col-md-12">	
 				<div class="panel panel-default">
-					<div class="panel-body">					
-						<h3 class="text-primary">
-							Proveedor
-						</h3>
-						<c:url var="addAction" value="/proveedor/add" ></c:url>
-						<br />						
-						<form:form id="proveedorForm" class="form-inline" action="${addAction}" commandName="proveedor">		
+				<div class="panel-heading" style="font-size: 24px;">
+						Proveedor
+					</div>
+					<div class="panel-body">
+						<c:url var="addAction" value="/proveedor/add" ></c:url>												
+						<form:form id="proveedorForm" action="${addAction}" commandName="proveedor">		
 							<c:if test="${!empty proveedor.nombre}">							
 								<div class="row">
 									<div class="col-md-4">
@@ -72,48 +80,44 @@
 											<form:hidden path="id" />				
 										</div>
 									</div>
-								</div>
-								<br />	
+								</div>									
 							</c:if>							
 							<div class="row">
 								<div class="col-md-4">	
 									<div class="form-group">
-										<form:label class="control-label" for="cuit" path="cuit">CUIT:</form:label><br />
+										<form:label class="control-label" for="cuit" path="cuit">CUIT:</form:label>
 										<form:input class="form-control" id="cuit" path="cuit" />				
 									</div>
 								</div>
 								<div class="col-md-4">	
 									<div class="form-group">
-										<form:label class="control-label" path="nombre">Nombre:</form:label><br />
+										<form:label class="control-label" path="nombre">Nombre:</form:label>
 										<form:input class="form-control"  path="nombre" />
 									</div>
 								</div>
-							</div>
-							<br />
+							</div>							
 							<div class="row">
 								<div class="col-md-4">	
 									<div class="form-group">
-										<form:label class="control-label" path="telefono">Telefono:</form:label><br />
+										<form:label class="control-label" path="telefono">Telefono:</form:label>
 										<form:input class="form-control"  path="telefono" />
 									</div>
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<form:label class="control-label" path="mail">Email:</form:label><br />
+										<form:label class="control-label" path="mail">Email:</form:label>
 										<form:input class="form-control"  path="mail" />
 									</div>
 								</div>
-							</div>
-							<br />
+							</div>							
 							<div class="row">
 								<div class="col-md-4">
 									<div class="form-group">
-										<form:label class="control-label" path="domicilio">Domicilio:</form:label><br />
+										<form:label class="control-label" path="domicilio">Domicilio:</form:label>
 										<form:input class="form-control"  path="domicilio" />					
 									</div>
 								</div>
-							</div>
-							<br />
+							</div>							
 							<div class="row">
 								<div class="col-md-12">
 									<c:if test="${!empty proveedor.nombre}">
@@ -129,13 +133,13 @@
 				</div>
 			</div>
 		</div>
-	<br>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-body">
-						<h3 class="text-primary">Listado Proveedores</h3>
-						<br />
+				<div class="panel-heading" style="font-size: 24px;">
+						Listado Proveedores
+					</div>
+					<div class="panel-body">						
 						<c:if test="${!empty listProveedores}">
 						<div class="table-responsive">
 							<table class="table table-bordered table-hover">		
@@ -167,7 +171,6 @@
 				</div>	
 			</div>
 		</div>
-	<br>	
 	</div>
 </body>
 </html>

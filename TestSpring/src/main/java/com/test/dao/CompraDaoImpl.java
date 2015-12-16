@@ -48,6 +48,7 @@ public class CompraDaoImpl implements CompraDao {
 		compraToUpdate.setMonto(compra.getMonto());
 		compraToUpdate.setIdProveedor(compra.getIdProveedor());
 		compraToUpdate.setLineasCompra(compra.getLineasCompra());
+		compraToUpdate.setProvNombre(compra.getProvNombre());
 		getCurrentSession().update(compraToUpdate);
 	}
 

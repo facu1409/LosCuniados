@@ -23,9 +23,10 @@ public class Compra {
 	@GeneratedValue
 	private int id;
 	private int id_proveedor;
-	private Date fecha;
+	private String fecha;
 	private float monto;
 	private boolean activo;
+	private String provNombre;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "compra", cascade = CascadeType.ALL)
 	private List<LineaCompra> lineasCompra = new ArrayList<LineaCompra>();
@@ -33,7 +34,7 @@ public class Compra {
 	public Compra() {
 	}
 
-	public Compra(int idProveedor, Date fecha, float monto, boolean activo) {
+	public Compra(int idProveedor, String fecha, float monto, boolean activo) {
 		this.id_proveedor = idProveedor;
 		this.fecha = fecha;
 		this.monto = monto;
@@ -72,11 +73,11 @@ public class Compra {
 		this.id_proveedor = idProveedor;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return this.fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
@@ -86,6 +87,14 @@ public class Compra {
 
 	public void setMonto(float monto) {
 		this.monto = monto;
+	}
+
+	public String getProvNombre() {
+		return provNombre;
+	}
+
+	public void setProvNombre(String provNombre) {
+		this.provNombre = provNombre;
 	}
 
 }

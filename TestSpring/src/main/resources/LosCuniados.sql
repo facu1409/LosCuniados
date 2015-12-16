@@ -35,19 +35,15 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 
 
-# Dumping structure for table loscuniados.compra
-CREATE TABLE IF NOT EXISTS `compra` (
+CREATE TABLE `compra` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `id_proveedor` int(8) NOT NULL DEFAULT '0',
-  `fecha` date NOT NULL,
+  `fecha` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `monto` float NOT NULL DEFAULT '0',
-  `activo` bit NOT NULL DEFAULT 1,
+  `activo` bit(1) NOT NULL DEFAULT b'1',
+  `provNombre` varchar(45) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
-
-# Dumping data for table loscuniados.compra: 0 rows
-/*!40000 ALTER TABLE `compra` DISABLE KEYS */;
-/*!40000 ALTER TABLE `compra` ENABLE KEYS */;
 
 
 # Dumping structure for table loscuniados.factura

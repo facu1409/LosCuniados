@@ -52,13 +52,22 @@
 		                number: true
 		            }
 		        },
-		        highlight: function (element) {
-		            $(element).closest('.control-group').removeClass('success').addClass('error');
+		        highlight: function(element) {
+		            $(element).closest('.form-group').addClass('has-error');
 		        },
-		        success: function (element) {
-		            element.text('').addClass('valid')
-		                .closest('.control-group').removeClass('error').addClass('success');
+		        unhighlight: function(element) {
+		            $(element).closest('.form-group').removeClass('has-error');
+		        },
+		        errorElement: 'span',
+		        errorClass: 'help-block',
+		        errorPlacement: function(error, element) {
+		            if(element.parent('.input-group').length) {
+		                error.insertAfter(element.parent());
+		            } else {
+		                error.insertAfter(element);
+		            }
 		        }
+		        
 		    });
 
 		});
@@ -90,9 +99,11 @@
 
 		var idProd;
 		var descripcion;
+		var detalle;
 		$(document).on("click", "#btn_selectProd", function(event) {
 			idProd = $('input[name=radiosProducto]:checked').val();
 			descripcion = $('#descripcion_' + idProd).html();
+			detalle = $('#detalle_' + idProd).html();
 			var stock = $('#stock_' + idProd).html();
 			$('#prod_desc').val(descripcion);
 			$('#modalProductos').modal('toggle');
@@ -124,7 +135,7 @@
 			var total = cant * precioUn;
 			
 			var $row = $('<tr id="linea_'+i+'">'
-					+ '<td><input style=" border: none;" readonly="readonly" name="lineasFactura['+i+'].id_producto" value="'+idProd+'" /></td>'
+					+ '<input type="hidden" style=" border: none;" readonly="readonly" name="lineasFactura['+i+'].id_producto" value="'+idProd+'" />'
 					+ '<td><input style=" border: none;" readonly="readonly" value="'+descripcion+'" /></td>'
 					+ '<td><input style=" border: none;" readonly="readonly" name="lineasFactura['+i+'].precio_unitario" value="'+precioUn+'" /></td>'
 					+ '<td><input style=" border: none;" readonly="readonly" name="lineasFactura['+i+'].cantidad" value="'+cant+'" /></td>'
@@ -144,18 +155,17 @@
 
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
-		<br />
+		
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="text-primary">Factura</h3>
+					<div class="panel-heading" style="font-size: 24px;">
+						Factura
 					</div>
 					<div class="panel-body">
-<!-- 						<h3 class="text-primary">Factura</h3> -->
 						<c:url var="addAction" value="/factura/add"></c:url>
-						<br />
-						<form:form id="facturaForm" class="form-inline"
+						
+						<form:form id="facturaForm"
 							action="${addAction}" commandName="factura"
 							modelAttribute="factura">
 							<c:if test="${factura.id > 0}">
@@ -163,20 +173,20 @@
 									<div class="col-md-4">
 										<div class="form-group has-default">
 											<form:label class="control-label" for="id" path="id">ID:</form:label>
-											<br />
+											
 											<form:input class="form-control" id="id" path="id"
 												readonly="true" size="8" disabled="true" />
 											<form:hidden path="id" />
 										</div>
 									</div>
 								</div>
-								<br />
+								
 							</c:if>
 							<div class="row">
 								<div class="col-md-3">
 									<div class="form-group">
 										<form:label class="control-label" path="fecha">Fecha:</form:label>
-										<br />
+										
 										<div class='input-group date' id='datetimepicker2'>
 											<form:input type='text' class="form-control" path="fecha" />
 											<span class="input-group-addon"> <span
@@ -189,9 +199,9 @@
 									<div class="form-group">
 										<form:input id="id_Cliente" type="hidden" path="id_Cliente" />
 										<form:input id="clienteNombre" type="hidden" path="clienteNombre" />
-										<label class="control-label">Cliente:</label><br />
+										<label class="control-label">Cliente:</label>
 										<div class="input-group">
-											<input type="text" id="nombre_cliente" class="form-control"
+											<input type="text" id="nombre_cliente" name="nombre_cliente" class="form-control"
 												placeholder="Buscar..."> <span
 												class="input-group-btn">
 												<button class="btn btn-default" type="button"
@@ -207,7 +217,7 @@
 								<div class="col-md-3">
 									<div class="form-group">
 										<form:label class="control-label" path="id_tipoFactura">Tipo de Factura</form:label>
-										<br />
+										
 										<form:select class="form-control" path="id_tipoFactura">
 											<form:option value="A" label="   A   " />
 											<form:option value="B" label="   B   " />
@@ -216,13 +226,13 @@
 									</div>
 								</div>
 							</div>
-							<br />
+							
 							<div class="row">
 								<div class="col-md-3">
 									<div class="form-group">
-										<label class="control-label">Producto:</label><br />
+										<label class="control-label">Producto:</label>
 										<div class="input-group">
-											<input id="prod_desc" type="text" class="form-control"
+											<input id="prod_desc" name="prod_desc" type="text" class="form-control"
 												placeholder="Buscar..."> <span
 												class="input-group-btn">
 												<button class="btn btn-default" type="button"
@@ -237,31 +247,31 @@
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
-										<label class="control-label">Precio:</label><br /> <input
-											id="prod_precio" type="text" class="form-control">
+										<label class="control-label">Precio:</label> <input
+											id="prod_precio" name="prod_precio" type="number" step="0.01" class="form-control">
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
-										<label class="control-label">Cantidad:</label><br /> <input
+										<label class="control-label">Cantidad:</label> <input
 											id="cant" class="form-control input-number" value="1"
 											type="number" name="quantity" min="1">
 									</div>
 								</div>
-								<div class="col-md-3" style="padding-top: 20px">
+								<div class="col-md-3" style="padding-top: 25px">
 									<div class="form-group">
 										<button type="button" class="btn btn-primary"
 											id="btn_agregarLinea">Agregar</button>
 									</div>
 								</div>
 							</div>
-							<br />
+							
 							<div class="table-responsive">
 								<table id="tabla_factura"
 									class="table table-bordered table-hover">
 									<thead>
-										<tr class="active success">
-											<th>ID</th>
+										<tr class="active default">
+<!-- 											<th>ID</th> -->
 											<th>Producto</th>
 											<th>Precio Unitario</th>
 											<th>Cantidad</th>
@@ -272,14 +282,14 @@
 									<tbody>
 										<c:forEach items="${factura.lineasFactura}" var="lineaFactura"
 											varStatus="status">
-											<tr>
-												<td align="center">${status.count}</td>
-												<td><input  readonly="readonly"
+											<input type="hidden" readonly="readonly"
 													name="lineasFactura[${status.index}].id_producto"
-													value="${lineaFactura.idProducto}" /></td>
+													value="${lineaFactura.id_producto}" />
+											<tr>
+												<td align="center">${status.count}</td>												
 												<td><input readonly="readonly"
 													name="lineasFactura[${status.index}].precio_unitario"
-													value="${lineaFactura.precioUnitario}" /></td>
+													value="${lineaFactura.precio_unitario}" /></td>
 												<td><input readonly="readonly"
 													name="lineasFactura[${status.index}].cantidad"
 													value="${lineaFactura.cantidad}" /></td>
@@ -291,25 +301,25 @@
 									</tbody>
 								</table>
 							</div>
-							<br />
+							
 							<div class="row">
 								<div class="col-md-4">
 									<div class="form-group">
 										<form:label class="control-label" for="monto" path="monto">Total:</form:label>
-										<br />
+										
 										<form:input class="form-control" id="monto" path="monto"
 											readonly="true" />
 									</div>
 								</div>
 							</div>
-							<br />
+							
 							<div class="row">
 								<div class="col-md-12">
 									<c:if test="${factura.id > 0}">
 										<input class="btn btn-primary" type="submit" value="Editar" />
 									</c:if>
 									<c:if test="${factura.id == 0}">
-										<input class="btn btn-success" type="submit" value="Agregar" />
+										<input class="btn btn-success" type="submit" value="Facturar" />
 									</c:if>
 								</div>
 							</div>
@@ -336,7 +346,7 @@
 										<c:if test="${!empty listClientes}">
 											<div class="table-responsive">
 												<table class="table table-bordered table-hover">
-													<tr class="active success">
+													<tr class="active default">
 														<th width="30px"></th>
 														<th>ID</th>
 														<th>DNI/CUIT</th>
@@ -392,9 +402,10 @@
 										<c:if test="${!empty listProductos}">
 											<div class="table-responsive">
 												<table class="table table-bordered table-hover">
-													<tr class="active success">
+													<tr class="active default">
 														<th width="30px"></th>
 														<th>Nombre</th>
+														<th>Detalle</th>
 														<th>Stock</th>
 													</tr>
 													<c:forEach items="${listProductos}" var="producto">
@@ -403,6 +414,8 @@
 																id="${producto.id}" value="${producto.id}" /></td>
 															<td id="descripcion_${producto.id}"><c:out
 																	value="${producto.nombre}" /></td>
+															<td id="detalle_${producto.id}"><c:out
+																	value="${producto.detalle}" /></td>
 															<td id="stock_${producto.id}"><c:out
 																	value="${producto.stock}" /></td>
 														</tr>
@@ -426,20 +439,17 @@
 			</div>
 			<!-- /.modal -->
 		</div>
-		<br>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="text-primary">Listado Facturas</h3>
+					<div class="panel-heading" style="font-size: 24px;">
+						Listado Facturas
 					</div>
 					<div class="panel-body">
-<!-- 						<h3 class="text-primary">Listado Facturas</h3> -->
-						<br />
 						<c:if test="${!empty listFacturas}">
 							<div class="table-responsive">
 								<table class="table table-bordered table-hover">
-									<tr class="active success">
+									<tr class="active default">
 										<th>Fecha</th>
 										<th>Monto</th>
 										<th>Cliente</th>
@@ -468,7 +478,6 @@
 				</div>
 			</div>
 		</div>
-		<br>
 	</div>
 </body>
 </html>

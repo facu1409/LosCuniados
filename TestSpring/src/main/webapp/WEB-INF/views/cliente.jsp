@@ -39,15 +39,24 @@
 	                email: true
 	            },
 	            telefono: {
-	                required: true	               
+	                required: true,
+	                number: true
 	            }	   
 	        },
-	        highlight: function (element) {
-	            $(element).closest('.control-group').removeClass('success').addClass('error');
+	        highlight: function(element) {
+	            $(element).closest('.form-group').addClass('has-error');
 	        },
-	        success: function (element) {
-	            element.text('').addClass('valid')
-	                .closest('.control-group').removeClass('error').addClass('success');
+	        unhighlight: function(element) {
+	            $(element).closest('.form-group').removeClass('has-error');
+	        },
+	        errorElement: 'span',
+	        errorClass: 'help-block',
+	        errorPlacement: function(error, element) {
+	            if(element.parent('.input-group').length) {
+	                error.insertAfter(element.parent());
+	            } else {
+	                error.insertAfter(element);
+	            }
 	        }
 	    });
 
@@ -56,17 +65,15 @@
 </script>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
-	<br />
+	
 		<div class="row">
 			<div class="col-md-12">	
 				<div class="panel panel-default">
-					<div class="panel-body">					
-						<h3 class="text-primary">
-							Cliente
-						</h3>
-						<c:url var="addAction" value="/cliente/add" ></c:url>
-						<br />
-						<form:form id="clienteForm" class="form-inline" action="${addAction}" commandName="cliente">		
+					<div class="panel-heading" style="font-size: 24px; ">
+						Cliente</div>
+					<div class="panel-body">
+						<c:url var="addAction" value="/cliente/add" ></c:url>						
+						<form:form id="clienteForm" action="${addAction}" commandName="cliente">		
 							<c:if test="${!empty cliente.nombre}">							
 								<div class="row">
 									<div class="col-md-4">
@@ -76,46 +83,44 @@
 											<form:hidden path="id" />				
 										</div>
 									</div>
-								</div>
-								<br />	
+								</div>									
 							</c:if>							
 							<div class="row">
 								<div class="col-md-4">	
 									<div class="form-group">
-										<form:label class="control-label" for="dniCuit" path="dniCuit">DNI/CUIT:</form:label><br />
+										<form:label class="control-label" for="dniCuit" path="dniCuit">DNI/CUIT:</form:label>
 										<form:input value="" class="form-control numerico" id="dniCuit" path="dniCuit" />				
 									</div>
 								</div>
 								<div class="col-md-4">	
 									<div class="form-group">
-										<form:label class="control-label" path="nombre">Nombre:</form:label><br />
+										<form:label class="control-label" path="nombre">Nombre:</form:label>
 										<form:input class="form-control"  path="nombre" />
 									</div>
 								</div>
 								<div class="col-md-4">	
 									<div class="form-group">
-										<form:label class="control-label" path="apellido">Apellido:</form:label><br />
+										<form:label class="control-label" path="apellido">Apellido:</form:label>
 										<form:input class="form-control"  path="apellido" />
 									</div>						
 								</div>
-							</div>
-							<br />
+							</div>							
 							<div class="row">
 								<div class="col-md-4">	
 									<div class="form-group">
-										<form:label class="control-label" path="telefono">Celular:</form:label><br />
+										<form:label class="control-label" path="telefono">Celular:</form:label>
 										<form:input class="form-control numerico"  path="telefono" />
 									</div>
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<form:label class="control-label" path="email">Email:</form:label><br />
+										<form:label class="control-label" path="email">Email:</form:label>
 										<form:input class="form-control"  path="email" />
 									</div>
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<form:label class="control-label" path="fechaNacimiento">Fecha de Nacimiento:</form:label><br />
+										<form:label class="control-label" path="fechaNacimiento">Fecha de Nacimiento:</form:label>
 										  <div class='input-group date' id='datetimepicker2'>
 						                    <form:input type='text' class="form-control" path="fechaNacimiento" />
 						                    <span class="input-group-addon">
@@ -124,17 +129,15 @@
 						                </div>
 									</div>
 								</div>
-							</div>
-							<br />
+							</div>							
 							<div class="row">
 								<div class="col-md-4">
 									<div class="form-group">
-										<form:label class="control-label" path="domicilio">Domicilio:</form:label><br />
+										<form:label class="control-label" path="domicilio">Domicilio:</form:label>
 										<form:input class="form-control"  path="domicilio" />					
 									</div>
 								</div>								
-							</div>
-							<br />
+							</div>							
 							<div class="row">
 								<div class="col-md-12">
 									<c:if test="${!empty cliente.nombre}">
@@ -150,13 +153,13 @@
 				</div>
 			</div>
 		</div>
-	<br>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-body">
-						<h3 class="text-primary">Listado Clientes</h3>
-						<br />
+				<div class="panel-heading" style="font-size: 24px;">
+						Listado Clientes
+					</div>
+					<div class="panel-body">						
 						<c:if test="${!empty listClientes}">
 						<div class="table-responsive">
 							<table class="table table-bordered table-hover">		
@@ -192,7 +195,6 @@
 				</div>	
 			</div>
 		</div>
-	<br>	
 	</div>
 </body>
 </html>
