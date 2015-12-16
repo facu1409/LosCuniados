@@ -256,6 +256,7 @@
 									class="table table-bordered table-hover">
 									<thead>
 										<tr class="active success">
+											<th>ID</th>
 											<th>Producto</th>
 											<th>Precio Unitario</th>
 											<th>Cantidad</th>

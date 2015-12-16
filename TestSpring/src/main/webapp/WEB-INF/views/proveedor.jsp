@@ -10,6 +10,46 @@
 		<jsp:include page="importLibrerias.jsp"></jsp:include>
 	</head>
 <body>
+<script>
+ 
+ $(document).ready(function () {
+
+	    $('#proveedorForm').validate({	    	
+	        rules: {
+	        	cuit: {
+	                minlength: 11,
+	                maxlength: 11,
+	                required: true,
+	                number: true
+	            },
+	            nombre: {
+	                minlength: 2,
+	                required: true
+	            },
+	            telefono: {
+	                minlength: 2,
+	                required: true
+	            },
+	            mail: {	                
+	                email: true
+	            },
+	            domicilio: {
+	                minlength: 2,
+	                required: true
+	            }
+	        },
+	        highlight: function (element) {
+	            $(element).closest('.control-group').removeClass('success').addClass('error');
+	        },
+	        success: function (element) {
+	            element.text('').addClass('valid')
+	                .closest('.control-group').removeClass('error').addClass('success');
+	        }
+	    });
+
+	});
+ 
+</script>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
 	<br />
@@ -22,7 +62,7 @@
 						</h3>
 						<c:url var="addAction" value="/proveedor/add" ></c:url>
 						<br />						
-						<form:form class="form-inline" action="${addAction}" commandName="proveedor">		
+						<form:form id="proveedorForm" class="form-inline" action="${addAction}" commandName="proveedor">		
 							<c:if test="${!empty proveedor.nombre}">							
 								<div class="row">
 									<div class="col-md-4">

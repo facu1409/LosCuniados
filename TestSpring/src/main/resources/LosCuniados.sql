@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `compra` (
 # Dumping structure for table loscuniados.factura
 CREATE TABLE IF NOT EXISTS `factura` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
-  `id_tipoFactura` int(8) NOT NULL DEFAULT '0',
+  `id_tipoFactura` char(1) COLLATE latin1_spanish_ci NOT NULL DEFAULT 'C',
   `id_Cliente` int(8) NOT NULL DEFAULT '0',
   `activo` bit NOT NULL DEFAULT 1,
   `fecha` varchar(30) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',

@@ -10,6 +10,28 @@
 		<jsp:include page="importLibrerias.jsp"></jsp:include>
 	</head>
 <body>
+<script>
+ 
+ $(document).ready(function () {
+
+	    $('#productoForm').validate({	    	
+	        rules: {
+	        	nombre: {
+	                minlength: 2,
+	                required: true
+	            }
+	        },
+	        highlight: function (element) {
+	            $(element).closest('.control-group').removeClass('success').addClass('error');
+	        },
+	        success: function (element) {
+	            element.text('').addClass('valid')
+	                .closest('.control-group').removeClass('error').addClass('success');
+	        }
+	    });
+
+	}); 
+</script>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
 	<br />
@@ -22,7 +44,7 @@
 						</h3>
 						<c:url var="addAction" value="/producto/add" ></c:url>
 						<br />
-						<form:form class="form-inline" action="${addAction}" commandName="producto">		
+						<form:form id="productoForm" class="form-inline" action="${addAction}" commandName="producto">		
 							<c:if test="${!empty producto.nombre}">							
 								<div class="row">
 									<div class="col-md-4">
@@ -47,10 +69,9 @@
 										<form:label class="control-label" path="detalle">Detalle:</form:label><br />
 										<form:input style="width:730px" class="form-control"  path="detalle" />
 									</div>
-								</div>
-								
-								
-							</div>	
+								</div>							
+							</div>
+							<br />
 							<div class="row">
 							<div class="col-md-8">	
 									<div class="form-group">
