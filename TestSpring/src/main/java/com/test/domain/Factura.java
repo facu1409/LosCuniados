@@ -29,7 +29,8 @@ public class Factura{
 	private int id_Cliente;
 	private boolean activo;
 	private String fecha;
-	private float monto;	
+	private float monto;
+	private String clienteNombre;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "factura", cascade = CascadeType.ALL)
 	private List<LineaFactura> lineasFactura = new ArrayList<LineaFactura>();
@@ -37,9 +38,10 @@ public class Factura{
 	public Factura() {
 	}
 
-	public Factura(String id_tipoFactura, int id_Cliente, boolean activo,String fecha, float monto) {
+	public Factura(String id_tipoFactura, int id_Cliente, boolean activo,String fecha, float monto, String clienteNombre) {
 		this.id_tipoFactura = id_tipoFactura;
 		this.id_Cliente = id_Cliente;
+		this.clienteNombre = clienteNombre;
 		this.activo = activo;
 		this.fecha = fecha;
 		this.monto = monto;
@@ -99,6 +101,14 @@ public class Factura{
 
 	public void setMonto(float monto) {
 		this.monto = monto;
+	}
+
+	public String getClienteNombre() {
+		return clienteNombre;
+	}
+
+	public void setClienteNombre(String clienteNombre) {
+		this.clienteNombre = clienteNombre;
 	}
 
 }

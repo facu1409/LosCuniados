@@ -16,6 +16,9 @@ public class FacturaDaoImpl implements FacturaDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
+	
+	@Autowired
+	ProductoDao productoDao;
 
 	private Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
@@ -27,10 +30,13 @@ public class FacturaDaoImpl implements FacturaDao {
 	}
 
 	public void insertFactura(Factura factura) {
-		factura.setActivo(true);		
+		factura.setActivo(true);	
 		List<LineaFactura> facturaList = factura.getLineasFactura();
 		for (LineaFactura linea : facturaList) {
-			linea.setFactura(factura);			
+			linea.setFactura(factura);		
+			float cantidad = -linea.getCantidad();
+			System.out.println(cantidad);
+			productoDao.updateStockProducto(linea.getId_producto(),cantidad);
 		}
 		factura.setLineasFactura(facturaList);
 		getCurrentSession().save(factura);
@@ -42,6 +48,7 @@ public class FacturaDaoImpl implements FacturaDao {
 		facturaToUpdate.setMonto(factura.getMonto());
 		facturaToUpdate.setId_tipoFactura(factura.getId_tipoFactura());
 		facturaToUpdate.setId_Cliente(factura.getId_Cliente());
+		facturaToUpdate.setClienteNombre(factura.getClienteNombre());
 		facturaToUpdate.setLineasFactura(factura.getLineasFactura());
 		getCurrentSession().update(facturaToUpdate);
 	}

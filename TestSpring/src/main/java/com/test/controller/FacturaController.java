@@ -29,7 +29,7 @@ public class FacturaController extends MultiActionController {
 		model.addAttribute("factura", new Factura());
 		model.addAttribute("listFacturas", this.facturaService.getList());
 		model.addAttribute("listClientes", this.clienteService.getList());
-		model.addAttribute("listProductos", this.productoService.getList());
+		model.addAttribute("listProductos", this.productoService.getListStock());
 		return "factura";
 	}		
 	

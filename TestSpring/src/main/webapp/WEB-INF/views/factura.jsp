@@ -83,6 +83,7 @@
 			var nombre = $('#nombre_' + idCliente).html();
 			var apellido = $('#apellido_' + idCliente).html();
 			var nombre_apellido = nombre + ' ' + apellido;
+			$('#clienteNombre').val(nombre_apellido);
 			$('#nombre_cliente').val(nombre_apellido);
 			$('#modalClientes').modal('toggle');
 		});
@@ -147,8 +148,11 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-body">
+					<div class="panel-heading">
 						<h3 class="text-primary">Factura</h3>
+					</div>
+					<div class="panel-body">
+<!-- 						<h3 class="text-primary">Factura</h3> -->
 						<c:url var="addAction" value="/factura/add"></c:url>
 						<br />
 						<form:form id="facturaForm" class="form-inline"
@@ -184,6 +188,7 @@
 								<div class="col-md-3">
 									<div class="form-group">
 										<form:input id="id_Cliente" type="hidden" path="id_Cliente" />
+										<form:input id="clienteNombre" type="hidden" path="clienteNombre" />
 										<label class="control-label">Cliente:</label><br />
 										<div class="input-group">
 											<input type="text" id="nombre_cliente" class="form-control"
@@ -333,6 +338,7 @@
 												<table class="table table-bordered table-hover">
 													<tr class="active success">
 														<th width="30px"></th>
+														<th>ID</th>
 														<th>DNI/CUIT</th>
 														<th>Nombre</th>
 														<th>Apellido</th>
@@ -341,6 +347,7 @@
 														<tr>
 															<td><input type="radio" name="radiosCliente"
 																id="${cliente.id}" value="${cliente.id}" /></td>
+															<td><c:out value="${cliente.id}" /></td>
 															<td><c:out value="${cliente.dniCuit}" /></td>
 															<td id="nombre_${cliente.id}"><c:out
 																	value="${cliente.nombre}" /></td>
@@ -423,8 +430,11 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-body">
+					<div class="panel-heading">
 						<h3 class="text-primary">Listado Facturas</h3>
+					</div>
+					<div class="panel-body">
+<!-- 						<h3 class="text-primary">Listado Facturas</h3> -->
 						<br />
 						<c:if test="${!empty listFacturas}">
 							<div class="table-responsive">
@@ -439,8 +449,8 @@
 									<c:forEach items="${listFacturas}" var="factura">
 										<tr>
 											<td><c:out value="${factura.fecha}" /></td>
-											<td><c:out value="${factura.monto}" /></td>
-											<td><c:out value="${factura.id_Cliente}" /></td>
+											<td><c:out value="${factura.monto}" /></td>											
+											<td><c:out value="${factura.clienteNombre}" /></td>
 											<td><c:out value="${factura.id_tipoFactura}" /></td>
 											<td align="center">
 												<!-- 										<a style="padding: 5px; color: gray" --> <%-- 											href="<c:url value='/editFactura/${factura.id}' />"><span  --%>

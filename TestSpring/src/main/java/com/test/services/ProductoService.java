@@ -12,6 +12,8 @@ public interface ProductoService {
 	public void insertProducto(Producto producto);
 
 	public List<Producto> getList();
+	
+	public List<Producto> getListStock();
 
 	public Producto getProductoById(int id);
 

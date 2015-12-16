@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `factura` (
   `activo` bit NOT NULL DEFAULT 1,
   `fecha` varchar(30) COLLATE latin1_spanish_ci NOT NULL DEFAULT '',
   `monto` float NOT NULL DEFAULT '0',
+  `clienteNombre` varchar(45) COLLATE latin1_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -73,6 +74,7 @@ CREATE TABLE IF NOT EXISTS `lineacompra` (
   `cantidad` int(6) NOT NULL DEFAULT '0',
   `precio_unitario` float NOT NULL DEFAULT '0',
   `total` float NOT NULL DEFAULT '0',
+  `id_compra` int(8) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 

@@ -9,12 +9,17 @@ public interface ProductoDao {
 	public void insertProducto(Producto producto);
 	
 	public List<Producto> getList();
+	
+	public List<Producto> getListStock();
 
 	public Producto getProductoById(int id);
 
 	public void updateProducto(Producto producto);
 
 	public void deleteProducto(int id);
+
+	public void updateStockProducto(int idProducto, float cantidad);
+
 
 
 }

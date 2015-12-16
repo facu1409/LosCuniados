@@ -36,6 +36,10 @@ public class ProductoServiceImpl implements ProductoService {
 	public void deleteProducto(int id) {
 		productoDao.deleteProducto(id);
 	}
+	
+	public List<Producto> getListStock() {
+		return productoDao.getListStock();		
+	}
 
 }
 
