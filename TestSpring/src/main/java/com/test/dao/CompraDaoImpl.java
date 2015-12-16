@@ -35,7 +35,9 @@ public class CompraDaoImpl implements CompraDao {
 		List<LineaCompra> compraList = compra.getLineasCompra();
 		for (LineaCompra linea : compraList) {
 			linea.setCompra(compra);	
-			productoDao.updateStockProducto(linea.getIdProducto(),linea.getCantidad());
+			float cantidad = linea.getCantidad();
+			System.out.println(cantidad);
+			productoDao.updateStockProducto(linea.getIdProducto(),cantidad);
 		}
 		compra.setLineasCompra(compraList);
 		getCurrentSession().save(compra);

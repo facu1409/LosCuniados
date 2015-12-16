@@ -13,7 +13,7 @@ public class LineaCompra {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	private int idProducto;
+	private int id_producto;
 	private int cantidad;
 	private float total;
 	@ManyToOne
@@ -25,7 +25,7 @@ public class LineaCompra {
 	}
 
 	public LineaCompra(int idProducto, int cantidad, float total, Compra compra) {
-		this.idProducto = idProducto;
+		this.id_producto = idProducto;
 		this.cantidad = cantidad;
 		this.total = total;
 		this.compra = compra;
@@ -40,11 +40,11 @@ public class LineaCompra {
 	}
 
 	public int getIdProducto() {
-		return this.idProducto;
+		return this.id_producto;
 	}
 
 	public void setIdProducto(int idProducto) {
-		this.idProducto = idProducto;
+		this.id_producto = idProducto;
 	}
 
 	public int getCantidad() {

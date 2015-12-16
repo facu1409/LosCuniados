@@ -35,6 +35,7 @@ public class FacturaDaoImpl implements FacturaDao {
 		for (LineaFactura linea : facturaList) {
 			linea.setFactura(factura);		
 			float cantidad = -linea.getCantidad();
+			System.out.println(cantidad);
 			productoDao.updateStockProducto(linea.getId_producto(),cantidad);
 		}
 		factura.setLineasFactura(facturaList);

@@ -90,6 +90,7 @@
 
 		var stock = 0;
 		var descripcion;
+		var idProducto;
 		$(document).on("click", "#btn_selectProd", function(event) {
 			idProducto = $('input[name=radiosProducto]:checked').val();
 			descripcion = $('#descripcion_' + idProducto).html();
@@ -127,12 +128,12 @@
 			stock = parseInt(stock) + parseInt(cant);
 			
 			var $row = $('<tr id="linea_'+i+'">'
-					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].idProducto" value="'+idProducto+'" /></td>'
-					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].descripcion" value="'+descripcion+'" /></td>'
-					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].cantidad" value="'+cant+'" /></td>'
-					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].precio_unitario" value="'+precioUn+'" /></td>'
-					+ '<td><input id="inputTotal_'+i+'" style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].total" value="'+total+'" /></td>'
-					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].stock" value="'+stock+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineasCompra['+i+'].idProducto" value="'+idProducto+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineasCompra['+i+'].descripcion" value="'+descripcion+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineasCompra['+i+'].cantidad" value="'+cant+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineasCompra['+i+'].precio_unitario" value="'+precioUn+'" /></td>'
+					+ '<td><input id="inputTotal_'+i+'" style=" border: none;" readonly="readonly" name="lineasCompra['+i+'].total" value="'+total+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineasCompra['+i+'].stock" value="'+stock+'" /></td>'
 					+ '<td><a class="claseLinea" id="'+i+'" style="padding: 5px; color: gray;cursor: pointer;"><span class="glyphicon glyphicon-remove"></span></a></td>'
 					+ '</tr>');
 	
@@ -206,13 +207,10 @@
 									</div>
 								</div> 
 							</div>
-							
 							<br />
-							
 							<div class="row">
 								<div class="col-md-3">
 									<div class="form-group">
-<%-- 									<form:input id="idProducto" type="hidden" path="idProducto" /> --%>
 										<label class="control-label">Producto:</label><br />
 										<div class="input-group">
 											<input id="prod_desc" type="text" class="form-control"	
@@ -248,9 +246,7 @@
 									</div>
 								</div>
 							</div>
-							
 							<br />
-							
 							<div class="table-responsive">
 								<table id="tabla_compra"
 									class="table table-bordered table-hover">
@@ -442,20 +438,18 @@
 										<th>Fecha</th>
 										<th>Monto</th>
 										<th>Proveedor</th>
-										<th></th>
+										
 									</tr>
 									<c:forEach items="${listCompras}" var="compra">
 										<tr>
 											<td><c:out value="${compra.fecha}" /></td>
 											<td><c:out value="${compra.monto}" /></td>
-											<td><c:out value="${compra.id_Proveedor}" /></td>
-											<td align="center">
-												<!-- 										<a style="padding: 5px; color: gray" --> <%-- 											href="<c:url value='/editFactura/${factura.id}' />"><span  --%>
-												<!-- 											class="glyphicon glyphicon-edit"></span></a>  -->
-												<a style="padding: 5px; color: gray;cursor: pointer;"
-												href="<c:url value='/removeCompra/${compra.id}' />"><span
-													class="glyphicon glyphicon-remove"></span></a>
-											</td>
+											<td><c:out value="${compra.idProveedor}" /></td>
+<!-- 											<td align="center"> -->
+<!-- 												<a style="padding: 5px; color: gray;cursor: pointer;" -->
+<%-- 												href="<c:url value='/removeCompra/${compra.id}' />"><span --%>
+<!-- 													class="glyphicon glyphicon-remove"></span></a> -->
+<!-- 											</td> -->
 										</tr>
 									</c:forEach>
 								</table>
