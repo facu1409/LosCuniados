@@ -88,8 +88,9 @@
 			$('#modalProveedores').modal('toggle');
 		});
 
-		var stock;
+		var stock = 0;
 		var descripcion;
+		var idProducto;
 		$(document).on("click", "#btn_selectProd", function(event) {
 			idProducto = $('input[name=radiosProducto]:checked').val();
 			descripcion = $('#descripcion_' + idProducto).html();
@@ -124,15 +125,15 @@
 			var precioUn = $("#prod_precio").val();
 			var cant = $("#cant").val();
 			var total = cant * precioUn;
-			stock = stock + cant;
+			stock = parseInt(stock) + parseInt(cant);
 			
 			var $row = $('<tr id="linea_'+i+'">'
-					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].idProducto" value="'+idProducto+'" /></td>'
-					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].descripcion" value="'+descripcion+'" /></td>'
-					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].cantidad" value="'+cant+'" /></td>'
-					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].precio_unitario" value="'+precioUn+'" /></td>'
-					+ '<td><input id="inputTotal_'+i+'" style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].total" value="'+total+'" /></td>'
-					+ '<td><input style=" border: none;" readonly="readonly" name="lineaCompra['+i+'].stock" value="'+stock+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineasCompra['+i+'].idProducto" value="'+idProducto+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineasCompra['+i+'].descripcion" value="'+descripcion+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineasCompra['+i+'].cantidad" value="'+cant+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineasCompra['+i+'].precio_unitario" value="'+precioUn+'" /></td>'
+					+ '<td><input id="inputTotal_'+i+'" style=" border: none;" readonly="readonly" name="lineasCompra['+i+'].total" value="'+total+'" /></td>'
+					+ '<td><input style=" border: none;" readonly="readonly" name="lineasCompra['+i+'].stock" value="'+stock+'" /></td>'
 					+ '<td><a class="claseLinea" id="'+i+'" style="padding: 5px; color: gray;cursor: pointer;"><span class="glyphicon glyphicon-remove"></span></a></td>'
 					+ '</tr>');
 	
@@ -206,13 +207,10 @@
 									</div>
 								</div> 
 							</div>
-							
 							<br />
-							
 							<div class="row">
 								<div class="col-md-3">
 									<div class="form-group">
-<%-- 									<form:input id="idProducto" type="hidden" path="idProducto" /> --%>
 										<label class="control-label">Producto:</label><br />
 										<div class="input-group">
 											<input id="prod_desc" type="text" class="form-control"	
@@ -248,9 +246,7 @@
 									</div>
 								</div>
 							</div>
-							
 							<br />
-							
 							<div class="table-responsive">
 								<table id="tabla_compra"
 									class="table table-bordered table-hover">
@@ -262,6 +258,7 @@
 											<th>Precio</th>
 											<th>Total</th>
 											<th>Stock</th>
+											<th> </th>
 										</tr>
 									</thead>
 									<tbody>
@@ -314,7 +311,7 @@
 									</c:if>
 								</div>
 							</div>
-							</form:form>
+						</form:form>
 					</div>
 				</div> 
  			</div> 
@@ -423,47 +420,48 @@
 			<!-- /.modal -->
 			<%-- 						</form:form>	 --%>
 		</div>
-	</div>
+<!-- 	</div> -->
 	<!-- 			</div> -->
 	<!-- 		</div> -->
 	
 	<br>
 	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<h3 class="text-primary">Listado Compras</h3>
-					<br />
-					<c:if test="${!empty listCompras}">
-						<div class="table-responsive">
-							<table class="table table-bordered table-hover">
-								<tr class="active success">
-									<th>Fecha</th>
-									<th>Acciones</th>
-								</tr>
-								<c:forEach items="${listCompras}" var="compra">
-									<tr>
-										<td><c:out value="${compra.fecha}" /></td>
-										<td align="center"><a style="padding: 5px; color: gray"
-											href="<c:url value='/editCompra/${compra.id}' />"><span
-												class="glyphicon glyphicon-edit"></span></a> <a
-											style="padding: 5px; color: gray;"
-											href="<c:url value='/removeCompra/${compra.id}' />"><span
-												class="glyphicon glyphicon-remove"></span></a></td>
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h3 class="text-primary">Listado de Compras</h3>
+						<br />
+						<c:if test="${!empty listCompras}">
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<tr class="active success">
+										<th>Fecha</th>
+										<th>Monto</th>
+										<th>Proveedor</th>
+										
 									</tr>
-								</c:forEach>
-							</table>
-						</div>
-					</c:if>
+									<c:forEach items="${listCompras}" var="compra">
+										<tr>
+											<td><c:out value="${compra.fecha}" /></td>
+											<td><c:out value="${compra.monto}" /></td>
+											<td><c:out value="${compra.idProveedor}" /></td>
+<!-- 											<td align="center"> -->
+<!-- 												<a style="padding: 5px; color: gray;cursor: pointer;" -->
+<%-- 												href="<c:url value='/removeCompra/${compra.id}' />"><span --%>
+<!-- 													class="glyphicon glyphicon-remove"></span></a> -->
+<!-- 											</td> -->
+										</tr>
+									</c:forEach>
+								</table>
+							</div>
+						</c:if>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	<br>
-	<!-- 	</div> -->
 	
-	
-	
+</div> 
 	
 </body>
 </html>

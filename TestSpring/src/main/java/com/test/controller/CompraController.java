@@ -46,6 +46,7 @@ public class CompraController extends MultiActionController {
 		if(p.getId() == 0){
 			//Si es nuevo Compra, agregarlo
 			this.compraService.insertCompra(p);
+			
 		}else{
 			//Si existe, actualizarlo
 			this.compraService.updateCompra(p);

@@ -10,12 +10,16 @@ import org.springframework.stereotype.Repository;
 
 import com.test.domain.Compra;
 import com.test.domain.LineaCompra;
+import com.test.domain.Producto;
 
 @Repository
 public class CompraDaoImpl implements CompraDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
+	
+	@Autowired
+	ProductoDao productoDao;
 
 	private Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
@@ -30,7 +34,10 @@ public class CompraDaoImpl implements CompraDao {
 		compra.setActivo(true);		
 		List<LineaCompra> compraList = compra.getLineasCompra();
 		for (LineaCompra linea : compraList) {
-			linea.setCompra(compra);			
+			linea.setCompra(compra);	
+			float cantidad = linea.getCantidad();
+			System.out.println(cantidad);
+			productoDao.updateStockProducto(linea.getIdProducto(),cantidad);
 		}
 		compra.setLineasCompra(compraList);
 		getCurrentSession().save(compra);

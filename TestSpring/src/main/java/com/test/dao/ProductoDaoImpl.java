@@ -52,12 +52,12 @@ public class ProductoDaoImpl implements ProductoDao {
 				.createQuery("from Producto where activo = 1").list();
 	}
 
+
 	@SuppressWarnings("unchecked")
 	public List<Producto> getListStock() {
 		return getCurrentSession()
 				.createQuery("from Producto where activo = 1 and stock > 0").list();
 	}
-
 
 	public void updateStockProducto(int idProducto, float cantidad) {
 		// TODO Auto-generated method stub
