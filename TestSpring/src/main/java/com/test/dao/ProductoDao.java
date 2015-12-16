@@ -16,5 +16,8 @@ public interface ProductoDao {
 
 	public void deleteProducto(int id);
 
+	public void updateStockProducto(int idProducto, float cantidad);
+
+
 
 }

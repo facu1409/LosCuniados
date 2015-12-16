@@ -52,4 +52,13 @@ public class ProductoDaoImpl implements ProductoDao {
 				.createQuery("from Producto where activo = 1").list();
 	}
 
+
+	public void updateStockProducto(int idProducto, float cantidad) {
+		// TODO Auto-generated method stub
+		Producto ProductoToUpdate = getProductoById(idProducto);
+		float stock = ProductoToUpdate.getStock() + cantidad;
+		ProductoToUpdate.setStock((int)stock);
+		getCurrentSession().update(ProductoToUpdate);
+	}
+
 }

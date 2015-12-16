@@ -21,7 +21,7 @@ import javax.persistence.Table;
 public class Compra {
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private int id;
 	private int id_proveedor;
 	private Date fecha;
 	private float monto;
@@ -56,11 +56,11 @@ public class Compra {
 		this.activo = activo;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
