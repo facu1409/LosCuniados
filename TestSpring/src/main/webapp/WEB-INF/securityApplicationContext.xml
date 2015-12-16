@@ -11,6 +11,8 @@
     <http pattern="/resources/js/**" security="none"/>
        
     <http auto-config="true" use-expressions="true">
+        <intercept-url pattern="/compra*" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/proveedor*" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/resources/images/**" access="permitAll" /> 
 		<intercept-url pattern="/resources/css/**" access="permitAll" />
@@ -30,6 +32,7 @@
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
+				<user name="admin" password="1234" authorities="ROLE_USER, ROLE_ADMIN" />
 				<user name="user" password="1234" authorities="ROLE_USER" />
 			</user-service>
 		</authentication-provider>

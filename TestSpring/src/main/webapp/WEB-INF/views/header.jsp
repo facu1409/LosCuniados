@@ -24,8 +24,8 @@ body {
 			<ul class="nav navbar-nav">
 				<li><a href="clientes">Clientes</a></li>
 				<li><a href="productos">Productos</a></li>
-				<li><a href="proveedores">Proveedores</a></li>
 				<li><a href="facturas">Facturas</a></li>
+				<li><a href="proveedores">Proveedores</a></li>
 				<li><a href="compras">Compras</a></li>
 				<li><a href="<c:url value="j_spring_security_logout" />">Logout</a></li>
 			</ul>
